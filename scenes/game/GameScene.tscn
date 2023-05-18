@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6hf2s016mya6"]
+
+[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="1_lyxt3"]
+
+[node name="GameScene" type="Node3D"]
+
+[node name="Transition" type="Node2D" parent="."]
+
+[node name="TransitionOverlayScene" parent="Transition" instance=ExtResource("1_lyxt3")]
