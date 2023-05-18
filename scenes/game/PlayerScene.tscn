@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipt2cfusnd4v"]
+
+[ext_resource type="Script" path="res://scripts/game/PlayerScene.gd" id="1_rfmn2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
+
+[node name="PlayerScene" type="CharacterBody3D"]
+script = ExtResource("1_rfmn2")
+
+[node name="PlayerHead" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera3D"]
+target_position = Vector3(0, 0, -3)
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_votpe")
+
+[node name="PlayerUI" type="Node" parent="."]
