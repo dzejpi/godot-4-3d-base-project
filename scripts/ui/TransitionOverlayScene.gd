@@ -25,7 +25,6 @@ func _process(delta):
 		transition_overlay_sprite.scale.x =  get_window().size.x
 		transition_overlay_sprite.scale.y = get_window().size.y
 	
-	# If fading out, then we want 
 	if is_fading_out:
 		if time_out < 1:
 			time_out += (time_out_speed * delta)
