@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://lidxun3v1u3h"]
+
+[ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_vgfvs"]
+[ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="2_mcyt0"]
+[ext_resource type="Texture2D" uid="uid://d137crrs2egx8" path="res://assets/sprites/menu_buttons/menu_btn_hover.png" id="3_bj0d4"]
+[ext_resource type="Texture2D" uid="uid://bvjqteitujpy" path="res://assets/sprites/menu_buttons/menu_btn_disabled.png" id="4_ak0xr"]
+[ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_8ecms"]
+[ext_resource type="Script" path="res://scripts/game_ui/QuitGameButton.gd" id="6_6v2ld"]
+[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="6_w4x3g"]
+[ext_resource type="Script" path="res://scripts/game_ui/MainMenuButtons.gd" id="7_wl5wd"]
+
+[node name="GameOverScene" type="Node2D"]
+
+[node name="GameOverLabel" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 128.0
+text = "Game over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverButtons" type="Node2D" parent="."]
+position = Vector2(640, 486)
+
+[node name="QuitGameButton" type="TextureButton" parent="GameOverButtons"]
+offset_left = 32.0
+offset_right = 288.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_vgfvs")
+texture_pressed = ExtResource("2_mcyt0")
+texture_hover = ExtResource("3_bj0d4")
+texture_disabled = ExtResource("4_ak0xr")
+texture_focused = ExtResource("5_8ecms")
+script = ExtResource("6_6v2ld")
+
+[node name="QuiteGameLabel" type="Label" parent="GameOverButtons/QuitGameButton"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Quit game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButtons" type="TextureButton" parent="GameOverButtons"]
+offset_left = -288.0
+offset_right = -32.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_vgfvs")
+texture_pressed = ExtResource("2_mcyt0")
+texture_hover = ExtResource("3_bj0d4")
+texture_disabled = ExtResource("4_ak0xr")
+texture_focused = ExtResource("5_8ecms")
+script = ExtResource("7_wl5wd")
+
+[node name="MainMenuLabel" type="Label" parent="GameOverButtons/MainMenuButtons"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Overlay" type="Node2D" parent="."]
+
+[node name="TransitionOverlayScene" parent="Overlay" instance=ExtResource("6_w4x3g")]
+
+[connection signal="pressed" from="GameOverButtons/QuitGameButton" to="GameOverButtons/QuitGameButton" method="_on_pressed"]
+[connection signal="pressed" from="GameOverButtons/MainMenuButtons" to="GameOverButtons/MainMenuButtons" method="_on_pressed"]
