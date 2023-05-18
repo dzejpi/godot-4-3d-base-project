@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://8rjjgn7r2g22"]
+
+[ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_fati3"]
+[ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="2_o2o55"]
+[ext_resource type="Texture2D" uid="uid://d137crrs2egx8" path="res://assets/sprites/menu_buttons/menu_btn_hover.png" id="3_yrxtn"]
+[ext_resource type="Texture2D" uid="uid://bvjqteitujpy" path="res://assets/sprites/menu_buttons/menu_btn_disabled.png" id="4_w2s7p"]
+[ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_my72x"]
+[ext_resource type="Script" path="res://scripts/game_ui/ContinueGameButton.gd" id="6_hntig"]
+[ext_resource type="Script" path="res://scripts/game_ui/MainMenuButtons.gd" id="6_yyb44"]
+[ext_resource type="Script" path="res://scripts/ui/MusicButton.gd" id="7_4n1ho"]
+[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="7_d5kab"]
+[ext_resource type="Script" path="res://scripts/ui/SoundsButton.gd" id="8_mlp05"]
+
+[node name="GamePauseScene" type="Node2D"]
+
+[node name="PauseButtons" type="Node2D" parent="."]
+
+[node name="ContinueGameButton" type="TextureButton" parent="PauseButtons"]
+offset_right = 256.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_fati3")
+texture_pressed = ExtResource("2_o2o55")
+texture_hover = ExtResource("3_yrxtn")
+texture_disabled = ExtResource("4_w2s7p")
+texture_focused = ExtResource("5_my72x")
+script = ExtResource("6_hntig")
+
+[node name="ContinueGameLabel" type="Label" parent="PauseButtons/ContinueGameButton"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicButton" type="TextureButton" parent="PauseButtons"]
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+toggle_mode = true
+texture_normal = ExtResource("1_fati3")
+texture_pressed = ExtResource("2_o2o55")
+texture_hover = ExtResource("3_yrxtn")
+texture_disabled = ExtResource("4_w2s7p")
+texture_focused = ExtResource("5_my72x")
+script = ExtResource("7_4n1ho")
+
+[node name="MusicLabel" type="Label" parent="PauseButtons/MusicButton"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Music: on"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundsButton" type="TextureButton" parent="PauseButtons"]
+offset_top = 192.0
+offset_right = 256.0
+offset_bottom = 256.0
+toggle_mode = true
+texture_normal = ExtResource("1_fati3")
+texture_pressed = ExtResource("2_o2o55")
+texture_hover = ExtResource("3_yrxtn")
+texture_disabled = ExtResource("4_w2s7p")
+texture_focused = ExtResource("5_my72x")
+script = ExtResource("8_mlp05")
+
+[node name="SoundsLabel" type="Label" parent="PauseButtons/SoundsButton"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Sounds: on"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="TextureButton" parent="PauseButtons"]
+offset_top = 288.0
+offset_right = 256.0
+offset_bottom = 352.0
+texture_normal = ExtResource("1_fati3")
+texture_pressed = ExtResource("2_o2o55")
+texture_hover = ExtResource("3_yrxtn")
+texture_disabled = ExtResource("4_w2s7p")
+texture_focused = ExtResource("5_my72x")
+script = ExtResource("6_yyb44")
+
+[node name="MainMenuLabel" type="Label" parent="PauseButtons/MainMenuButton"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Overlay" type="Node2D" parent="."]
+
+[node name="TransitionOverlayScene" parent="Overlay" instance=ExtResource("7_d5kab")]
+
+[connection signal="pressed" from="PauseButtons/ContinueGameButton" to="PauseButtons/ContinueGameButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseButtons/MusicButton" to="PauseButtons/MusicButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseButtons/SoundsButton" to="PauseButtons/SoundsButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseButtons/MainMenuButton" to="PauseButtons/MainMenuButton" method="_on_pressed"]
