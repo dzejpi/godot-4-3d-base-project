@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ygxg8rje5y7l"]
+
+[ext_resource type="Script" path="res://scripts/ui/SplashScene.gd" id="1_nmdo3"]
+[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="2_ni2h3"]
+[ext_resource type="Texture2D" uid="uid://dvlbg5c6q6yw3" path="res://assets/sprites/splash_logos/logo-main.png" id="2_xnm6m"]
+[ext_resource type="Texture2D" uid="uid://brt17o53o826k" path="res://assets/sprites/splash_logos/logo-jam.png" id="3_sdvf2"]
+
+[node name="SplashScene" type="Node2D"]
+script = ExtResource("1_nmdo3")
+
+[node name="Logos" type="Node2D" parent="."]
+
+[node name="DevLogoSprite" type="Sprite2D" parent="Logos"]
+texture = ExtResource("2_xnm6m")
+
+[node name="JamLogoSprite" type="Sprite2D" parent="Logos"]
+texture = ExtResource("3_sdvf2")
+
+[node name="Overlay" type="Node2D" parent="."]
+
+[node name="TransitionOverlayScene" parent="Overlay" instance=ExtResource("2_ni2h3")]

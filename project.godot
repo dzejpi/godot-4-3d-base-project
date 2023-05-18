@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot 4 3D Sample Project"
+run/main_scene="res://scenes/ui/SplashScene.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
