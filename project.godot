@@ -14,6 +14,10 @@ config/name="Godot 4 3D Sample Project"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+global_var="*res://scenes/GlobalScene.tscn"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
