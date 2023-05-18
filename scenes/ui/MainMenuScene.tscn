@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgrdefo35f2ri"]
+[gd_scene load_steps=14 format=3 uid="uid://bgrdefo35f2ri"]
 
 [ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_kpkvn"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenuScene.gd" id="1_mj8q0"]
 [ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="2_wuwa5"]
 [ext_resource type="Texture2D" uid="uid://d137crrs2egx8" path="res://assets/sprites/menu_buttons/menu_btn_hover.png" id="3_jn4kh"]
 [ext_resource type="Texture2D" uid="uid://bvjqteitujpy" path="res://assets/sprites/menu_buttons/menu_btn_disabled.png" id="4_4ygn1"]
@@ -11,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="7_8tn7o"]
 [ext_resource type="Script" path="res://scripts/ui/SoundsButton.gd" id="7_pmqqo"]
 [ext_resource type="Script" path="res://scripts/ui/CreditsButton.gd" id="8_8g4id"]
+[ext_resource type="Script" path="res://scripts/ui/BackButton.gd" id="12_84rwi"]
 
 [node name="MainMenuScene" type="Node2D"]
+script = ExtResource("1_mj8q0")
 
 [node name="MainMenuSection" type="Node2D" parent="."]
 
@@ -131,7 +134,7 @@ vertical_alignment = 1
 [node name="BackButton" type="Node2D" parent="CreditsSection"]
 position = Vector2(512, 592)
 
-[node name="BackToMenuButton" type="TextureButton" parent="CreditsSection/BackButton"]
+[node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton"]
 offset_right = 256.0
 offset_bottom = 64.0
 texture_normal = ExtResource("1_kpkvn")
@@ -139,9 +142,9 @@ texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
 texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
-script = ExtResource("6_gxbdg")
+script = ExtResource("12_84rwi")
 
-[node name="QuitGameLabel" type="Label" parent="CreditsSection/BackButton/BackToMenuButton"]
+[node name="BackButtonLabel" type="Label" parent="CreditsSection/BackButton/BackButton"]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -158,3 +161,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="MainMenuSection/MenuButtons/SoundsButton" to="MainMenuSection/MenuButtons/SoundsButton" method="_on_pressed"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/CreditsButton" to="MainMenuSection/MenuButtons/CreditsButton" method="_on_pressed"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/QuitGameButton" to="MainMenuSection/MenuButtons/QuitGameButton" method="_on_pressed"]
+[connection signal="pressed" from="CreditsSection/BackButton/BackButton" to="CreditsSection/BackButton/BackButton" method="_on_pressed"]
