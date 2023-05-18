@@ -11,7 +11,7 @@ func _ready():
 		self.disabled = true
 
 
-func _process(delta):
+func _process(_delta):
 	if is_button_pressed:
 		if transition_overlay_scene.time_out > 1:
 			get_tree().quit()

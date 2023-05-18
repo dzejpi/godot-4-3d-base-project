@@ -5,7 +5,7 @@ extends TextureButton
 var is_button_pressed = false
 
 
-func _process(delta):
+func _process(_delta):
 	if is_button_pressed:
 		if transition_overlay_scene.time_out > 1:
 			get_tree().change_scene_to_file("res://scenes/game/GameScene.tscn")
