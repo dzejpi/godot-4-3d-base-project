@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0k77qlot24nc"]
+
+[ext_resource type="Texture2D" uid="uid://c34t687ys3xjh" path="res://assets/sprites/dialogue/dialogue_text_background.png" id="1_lece7"]
+[ext_resource type="Script" path="res://scripts/game_ui/TypewriterDialogScene.gd" id="1_sml3d"]
+
+[node name="TypewriterDialogScene" type="Node2D"]
+script = ExtResource("1_sml3d")
+
+[node name="TextNode" type="Node2D" parent="."]
+position = Vector2(64, 464)
+
+[node name="TextBackgroundSprite" type="Sprite2D" parent="TextNode"]
+texture = ExtResource("1_lece7")
+centered = false
+
+[node name="TextLabel" type="Label" parent="TextNode/TextBackgroundSprite"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 176.0
+text = "Dialog text placeholder."
