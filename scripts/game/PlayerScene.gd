@@ -19,12 +19,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var mouse_sensitivity = 0.75
 
 var is_game_paused = false
+var is_game_over = false
+var is_game_won = false
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	is_game_paused = false
 	game_pause_scene.hide()
+	game_over_scene.hide()
+	game_won_scene.hide()
 
 
 func _process(delta):
@@ -35,19 +39,22 @@ func _process(delta):
 
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
+	if !is_game_paused && !is_game_over && !is_game_won:
+		if event is InputEventMouseMotion:
+			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
+			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
 
 	if Input.is_action_just_pressed("game_pause"):
-		if is_game_paused:
-			is_game_paused = false
-			game_pause_scene.is_game_paused = is_game_paused
-		else:
-			is_game_paused = true
-			game_pause_scene.is_game_paused = is_game_paused
+		if !is_game_over && !is_game_won:
+			if is_game_paused:
+				is_game_paused = false
+				game_pause_scene.is_game_paused = is_game_paused
+			else:
+				is_game_paused = true
+				game_pause_scene.is_game_paused = is_game_paused
 		
 		update_pause_state()
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -68,7 +75,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	move_and_slide()
 
 
@@ -85,3 +92,15 @@ func listen_for_pause_button_change():
 	if !(game_pause_scene.is_game_paused):
 		is_game_paused = game_pause_scene.is_game_paused
 		update_pause_state()
+
+
+func toggle_game_over():
+	is_game_over = true
+	game_over_scene.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func toggle_game_won():
+	is_game_won = true
+	game_won_scene.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
