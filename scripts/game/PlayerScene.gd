@@ -5,11 +5,33 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var camera = $PlayerHead/Camera
+@onready var ray_cast_3d = $PlayerHead/Camera/RayCast3D
+
+# UI parts
+@onready var game_pause_scene = $PlayerUI/GamePauseScene
+@onready var game_over_scene = $PlayerUI/GameEnd/GameOverScene
+@onready var game_won_scene = $PlayerUI/GameEnd/GameWonScene
+@onready var typewriter_dialog_scene = $PlayerUI/GameUI/TypewriterDialogScene
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var mouse_sensitivity = 0.75
+
+var is_game_paused = false
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	is_game_paused = false
+	game_pause_scene.hide()
+
+
+func _process(delta):
+	
+	# Update pause state if the user clicks on Continue
+	if is_game_paused:
+		listen_for_pause_button_change()
 
 
 func _input(event):
@@ -17,6 +39,15 @@ func _input(event):
 		rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
 		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
 
+	if Input.is_action_just_pressed("game_pause"):
+		if is_game_paused:
+			is_game_paused = false
+			game_pause_scene.is_game_paused = is_game_paused
+		else:
+			is_game_paused = true
+			game_pause_scene.is_game_paused = is_game_paused
+		
+		update_pause_state()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,3 +70,18 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func update_pause_state():
+	if is_game_paused:
+		game_pause_scene.show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		game_pause_scene.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func listen_for_pause_button_change():
+	if !(game_pause_scene.is_game_paused):
+		is_game_paused = game_pause_scene.is_game_paused
+		update_pause_state()

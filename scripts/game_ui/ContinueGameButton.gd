@@ -1,13 +1,9 @@
 extends TextureButton
 
 
-func _ready():
-	pass
-
-
-func _process(delta):
-	pass
+@onready var game_pause_scene = $"../.."
 
 
 func _on_pressed():
+	game_pause_scene.is_game_paused = false
 	release_focus()
