@@ -54,7 +54,7 @@ func process_dialog(delta):
 	var dialogs_in_array = dialog_text.size() - 1;
 	
 	# If the player wants to display the whole character
-	if Input.is_action_just_pressed("dialog_end"):
+	if Input.is_action_just_pressed("dialog_forward"):
 		# Show all letters at once
 		if currently_displayed_letter < letters_on_current_line:
 			currently_displayed_letter = letters_on_current_line
