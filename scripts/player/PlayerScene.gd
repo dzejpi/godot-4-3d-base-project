@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var camera = $PlayerHead/Camera
-@onready var ray_cast_3d = $PlayerHead/Camera/RayCast3D
+@onready var ray_cast = $PlayerHead/Camera/RayCast3D
 
 # UI parts
 @onready var game_pause_scene = $PlayerUI/GamePauseScene
@@ -32,6 +32,7 @@ func _ready():
 
 
 func _process(_delta):
+	process_collisions()
 	# Update pause state if the user clicks on Continue
 	if is_game_paused:
 		listen_for_pause_button_change()
@@ -80,6 +81,16 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+
+
+func process_collisions():
+	if ray_cast.is_colliding():
+		var collision_object = ray_cast.get_collider().name
+		var watched_object = ray_cast.get_collider()
+		
+		print("Player is looking at: " + collision_object + ".")
+	else:
+		print("Player is looking at: nothing.")
 
 
 func update_pause_state():
