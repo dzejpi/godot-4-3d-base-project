@@ -1,9 +1,11 @@
 extends Node2D
 
+
+@onready var transition_overlay_sprite = $TransitionOverlaySprite
+
 var time_out = 0
 var time_out_speed = 2
 var is_fading_out = true
-@onready var transition_overlay_sprite = $TransitionOverlaySprite
 
 
 func _ready():

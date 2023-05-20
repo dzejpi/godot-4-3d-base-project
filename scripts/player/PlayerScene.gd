@@ -43,7 +43,6 @@ func _input(event):
 			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
 	
-	
 	if Input.is_action_just_pressed("game_pause"):
 		if !is_game_over && !is_game_won:
 			if is_game_paused:
