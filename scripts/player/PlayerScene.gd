@@ -31,7 +31,7 @@ func _ready():
 	game_won_scene.hide()
 
 
-func _process(delta):
+func _process(_delta):
 	# Update pause state if the user clicks on Continue
 	if is_game_paused:
 		listen_for_pause_button_change()

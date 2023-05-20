@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ipt2cfusnd4v"]
+[gd_scene load_steps=7 format=3 uid="uid://b8tc7q5tq6x8m"]
 
-[ext_resource type="Script" path="res://scripts/game/PlayerScene.gd" id="1_rfmn2"]
+[ext_resource type="Script" path="res://scripts/player/PlayerScene.gd" id="1_63dc3"]
 [ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/GameOverScene.tscn" id="2_n2ncv"]
 [ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/GamePauseScene.tscn" id="2_s8mh6"]
 [ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/GameWonScene.tscn" id="3_ilfnc"]
@@ -9,7 +9,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
 
 [node name="PlayerScene" type="CharacterBody3D"]
-script = ExtResource("1_rfmn2")
+script = ExtResource("1_63dc3")
 
 [node name="PlayerHead" type="Node3D" parent="."]
 
