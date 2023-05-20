@@ -16,7 +16,6 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var direction = Vector3()
 var mouse_sensitivity = 0.75
 
 var is_game_paused = false
@@ -33,7 +32,6 @@ func _ready():
 
 
 func _process(delta):
-	
 	# Update pause state if the user clicks on Continue
 	if is_game_paused:
 		listen_for_pause_button_change()
@@ -44,11 +42,6 @@ func _input(event):
 		if event is InputEventMouseMotion:
 			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
-		
-		direction = Vector3()
-		direction.z = -Input.get_action_strength("move_up") + Input.get_action_strength("move_down")
-		direction.x = -Input.get_action_strength("move_left") + Input.get_action_strength("move_right")
-		direction = direction.normalized().rotated(Vector3.UP, rotation.y)
 	
 	
 	if Input.is_action_just_pressed("game_pause"):
@@ -64,22 +57,25 @@ func _input(event):
 
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
+	# Handle jump
 	if Input.is_action_just_pressed("move_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if Input.is_action_pressed("move_sprint"):
+			velocity.x = direction.x * SPEED * 2
+			velocity.z = direction.z * SPEED * 2
+		else:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
