@@ -71,11 +71,19 @@ func _physics_process(delta):
 	
 	if direction:
 		if Input.is_action_pressed("move_sprint"):
-			velocity.x = direction.x * SPEED * 2
-			velocity.z = direction.z * SPEED * 2
+			if !is_game_paused && !is_game_over && !is_game_won:
+				velocity.x = direction.x * SPEED * 2
+				velocity.z = direction.z * SPEED * 2
+			else:
+				velocity.x = direction.x * 0
+				velocity.z = direction.z * 0
 		else:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
+			if !is_game_paused && !is_game_over && !is_game_won:
+				velocity.x = direction.x * SPEED
+				velocity.z = direction.z * SPEED
+			else:
+				velocity.x = direction.x * 0
+				velocity.z = direction.z * 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
