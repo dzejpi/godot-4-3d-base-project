@@ -94,7 +94,6 @@ func _physics_process(delta):
 func process_collisions():
 	if ray_cast.is_colliding():
 		var collision_object = ray_cast.get_collider().name
-		var watched_object = ray_cast.get_collider()
 		
 		print("Player is looking at: " + collision_object + ".")
 	else:
