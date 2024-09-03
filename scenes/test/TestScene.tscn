@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://62w3n2fpdpaq"]
+
+[ext_resource type="PackedScene" uid="uid://b8tc7q5tq6x8m" path="res://scenes/player/PlayerScene.tscn" id="1_1xwv1"]
+[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="2_kmkt3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nl2vq"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dcqyx"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d5m1f"]
+
+[sub_resource type="Sky" id="Sky_kwi0q"]
+sky_material = SubResource("ProceduralSkyMaterial_d5m1f")
+
+[sub_resource type="Environment" id="Environment_cq50u"]
+background_mode = 2
+sky = SubResource("Sky_kwi0q")
+
+[node name="TestScene" type="Node3D"]
+
+[node name="PlayerScene" parent="." instance=ExtResource("1_1xwv1")]
+
+[node name="WalkingObjects" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="WalkingObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_nl2vq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WalkingObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/StaticBody3D"]
+shape = SubResource("BoxShape3D_dcqyx")
+
+[node name="Transition" type="Node2D" parent="."]
+
+[node name="TransitionOverlayScene" parent="Transition" instance=ExtResource("2_kmkt3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cq50u")
