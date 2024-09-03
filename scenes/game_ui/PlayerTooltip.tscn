@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://uqsnfk54cjss"]
+
+[ext_resource type="Script" path="res://scripts/game_ui/PlayerTooltip.gd" id="1_tadtt"]
+
+[node name="PlayerTooltip" type="Node2D"]
+script = ExtResource("1_tadtt")
+
+[node name="TooltipLabel" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 48.0
+text = "Placeholder tooltip"
+horizontal_alignment = 1
+vertical_alignment = 1
