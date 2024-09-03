@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://qeifrappbhg4" path="res://assets/sprites/transition/transition_sprite.png" id="2_3rbwp"]
 
 [node name="TransitionOverlayScene" type="Node2D"]
+z_index = 32
+z_as_relative = false
 script = ExtResource("1_okk7f")
 
 [node name="TransitionOverlaySprite" type="Sprite2D" parent="."]

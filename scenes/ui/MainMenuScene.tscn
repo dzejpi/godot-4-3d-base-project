@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgrdefo35f2ri"]
+[gd_scene load_steps=13 format=3 uid="uid://bgrdefo35f2ri"]
 
 [ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_kpkvn"]
 [ext_resource type="Script" path="res://scripts/ui/MainMenuScene.gd" id="1_mj8q0"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/ui/QuitGameButton.gd" id="6_gxbdg"]
 [ext_resource type="Script" path="res://scripts/ui/MusicButton.gd" id="6_q2mf7"]
 [ext_resource type="Script" path="res://scripts/ui/NewGameButton.gd" id="6_t3iba"]
-[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="7_8tn7o"]
 [ext_resource type="Script" path="res://scripts/ui/SoundsButton.gd" id="7_pmqqo"]
 [ext_resource type="Script" path="res://scripts/ui/CreditsButton.gd" id="8_8g4id"]
 [ext_resource type="Script" path="res://scripts/ui/BackButton.gd" id="12_84rwi"]
@@ -151,10 +150,6 @@ offset_bottom = 64.0
 text = "Back to menu"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Transition" type="Node2D" parent="."]
-
-[node name="TransitionOverlayScene" parent="Transition" instance=ExtResource("7_8tn7o")]
 
 [connection signal="pressed" from="MainMenuSection/MenuButtons/NewGameButton" to="MainMenuSection/MenuButtons/NewGameButton" method="_on_pressed"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/MusicButton" to="MainMenuSection/MenuButtons/MusicButton" method="_on_pressed"]

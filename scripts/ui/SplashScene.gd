@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var dev_logo_sprite = $Logos/DevLogoSprite
 @onready var jam_logo_sprite = $Logos/JamLogoSprite
-@onready var transition_overlay = $Overlay/TransitionOverlayScene
 
 var screen_width = 1280.0
 var screen_height = 720.0

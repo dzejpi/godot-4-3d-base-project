@@ -26,6 +26,7 @@ var debug = false
 
 
 func _ready():
+	transition_overlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	is_game_paused = false
 	game_pause_scene.hide()

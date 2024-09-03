@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8rjjgn7r2g22"]
+[gd_scene load_steps=11 format=3 uid="uid://8rjjgn7r2g22"]
 
 [ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_fati3"]
 [ext_resource type="Script" path="res://scripts/game_ui/GamePauseScene.gd" id="1_lp3de"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/game_ui/ContinueGameButton.gd" id="6_hntig"]
 [ext_resource type="Script" path="res://scripts/game_ui/MainMenuButtons.gd" id="6_yyb44"]
 [ext_resource type="Script" path="res://scripts/ui/MusicButton.gd" id="7_4n1ho"]
-[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="7_d5kab"]
 [ext_resource type="Script" path="res://scripts/ui/SoundsButton.gd" id="8_mlp05"]
 
 [node name="GamePauseScene" type="Node2D"]
@@ -93,10 +92,6 @@ offset_bottom = 64.0
 text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Overlay" type="Node2D" parent="."]
-
-[node name="TransitionOverlayScene" parent="Overlay" instance=ExtResource("7_d5kab")]
 
 [connection signal="pressed" from="PauseButtons/ContinueGameButton" to="PauseButtons/ContinueGameButton" method="_on_pressed"]
 [connection signal="pressed" from="PauseButtons/MusicButton" to="PauseButtons/MusicButton" method="_on_pressed"]

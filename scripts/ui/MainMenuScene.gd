@@ -7,7 +7,7 @@ var credits_x_position = -1280.0
 
 
 func _ready():
-	pass
+	transition_overlay.fade_out()
 
 
 func _process(delta):

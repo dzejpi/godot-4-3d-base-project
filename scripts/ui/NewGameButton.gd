@@ -1,7 +1,6 @@
 extends TextureButton
 
 
-@onready var transition_overlay = $"../../../Transition/TransitionOverlayScene"
 var is_button_pressed = false
 
 
