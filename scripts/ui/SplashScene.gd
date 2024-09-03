@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var dev_logo_sprite = $Logos/DevLogoSprite
 @onready var jam_logo_sprite = $Logos/JamLogoSprite
-@onready var transition_overlay_scene = $Overlay/TransitionOverlayScene
+@onready var transition_overlay = $Overlay/TransitionOverlayScene
 
 var screen_width = 1280.0
 var screen_height = 720.0
@@ -111,8 +111,7 @@ func process_jam_logo(delta):
 func go_to_main_menu(_delta):
 	if !everything_displayed:
 		everything_displayed = true
-		transition_overlay_scene.time_out = 0
-		transition_overlay_scene.is_fading_out = false
+		transition_overlay.fade_in()
 	
-	if transition_overlay_scene.time_out > 1:
+	if transition_overlay.transition_completed:
 		get_tree().change_scene_to_file("res://scenes/ui/MainMenuScene.tscn")
