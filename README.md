@@ -77,9 +77,24 @@ typewriter_dialog.start_dialog(["First message.", "Second message."], delta)
 
 The first parameter is an array of strings — those are separate dialogs that you want to display right after each other. This array can contain as many strings as you want. The other parameter of the function is `delta`, which should be self-explanatory and takes care of the dialog countdown (the time before another line is displayed automatically). If you do not have a delta available in your function, you can use `get_process_delta_time()`.
 
+Another node which you might find helpful is `PlayerTooltip` node which lets you display a tooltip and set the action to dismiss it.
+
+You can set a new tooltip with `player_tooltip.display_tooltip("Text to display", true/false)` where `true` or `false` set whether the tooltip is supposed to flash or not.
+
+You can set the action with `player_tooltip.set_tooltip_action("action_to_be_performed")` where the action is the input name from the input map. 
+
+TL;DR: if you want to create a flashing tooltip that says "Press Space to continue" which is dismissed by jumping, you can do it like this:
+
+```
+player_tooltip.display_tooltip("Press Space to continue", true)
+player_tooltip.set_tooltip_action("move_jump")
+```
+
+You can also dismiss the tooltip with `player_tooltip.dismiss_tooltip()` any time.
+
 ## Scripts
 
-Scripts are separated in their separate `scripts` folder. Apart from `buttons` folder, they generally follow the same structure as their scene counterparts, so there is not much to describe here.
+Scripts are separated in their separate `scripts` folder. Apart from `buttons` folder, they generally follow the same structure as their scene counterparts, so, there is not much to describe here.
 
 ## Assets
 
@@ -89,10 +104,19 @@ This project contains `assets` folder with the following structure:
 * **fonts** — this folder contains a font package from Kenney, which are licenced as CC0.
 * **music** — this folder contains a placeholder for your game music
 * **sfx** — this folder contains a placeholder for your game sounds
-* **sprites** — this is a folder for your visual assets
-  * **game_env** — this folder contains placeholders for the skybox and cubemap
-  * **ui** — this folder contains placeholders for UI elements
-	* **dialogue** — this folder contains placeholder for dialog text background
-	* **menu_buttons** — this folder contains placeholders for all menu buttons
-	* **splash_logos** — this folder placeholders for `logo-jam.png` and `logo-main.png` which are displayed in the `SplashScene.tscn` when the game is launched.
-	* **transition** — this folder contains black 1 x 1 px sprite used by the `TransitionOverlay.tscn`. Transition overlay simply scales the sprite to fit the window resolution
+* **sprites** — this is a folder for your sprites
+  * **dialogue** — this folder contains placeholder for dialog text background
+  * **menu_buttons** — this folder contains placeholders for all menu buttons
+  * **splash_logos** — this folder placeholders for `logo-jam.png` and `logo-main.png` which are displayed in the `SplashScene.tscn` when the game is launched.
+  * **transition** — this folder contains black 1 x 1 px sprite used by the `TransitionOverlay.tscn`. Transition overlay simply scales the sprite to fit the window resolution
+
+## Export to HTML5
+
+If you use this project for a game jam, you are most likely interesting in exporting to web. This is extremely easy. Just follow these steps:
+
+  1. Select `Project` -> `Export...`.
+  1. If you don't have up-to-date `Web (Runnable)`, download it.
+  1. Click on `Export Project...`.
+  1. Select (or created) `export` folder and give your project `index.html` name — important for itch.io!
+  1. Open the `export` folder and put everything from it into a *.zip* file.
+  1. Upload to itch.io as a file that is played in browser. Your project should work right away.
