@@ -36,12 +36,15 @@ func _process(delta):
 
 
 func fade_in():
-	transition_completed = false
-	transition_time_out = 0
+	reset_transition()
 	transition_in = true
 
 
 func fade_out():
+	reset_transition()
+	transition_in = false
+
+
+func reset_transition():
 	transition_completed = false
 	transition_time_out = 0
-	transition_in = false
