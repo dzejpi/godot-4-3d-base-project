@@ -22,6 +22,8 @@ var is_game_paused = false
 var is_game_over = false
 var is_game_won = false
 
+var debug = false
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -95,9 +97,11 @@ func process_collisions():
 	if ray_cast.is_colliding():
 		var collision_object = ray_cast.get_collider().name
 		
-		print("Player is looking at: " + collision_object + ".")
+		if debug:
+			print("Player is looking at: " + collision_object + ".")
 	else:
-		print("Player is looking at: nothing.")
+		if debug:
+			print("Player is looking at: nothing.")
 
 
 func update_pause_state():
