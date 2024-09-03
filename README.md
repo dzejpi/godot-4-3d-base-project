@@ -5,7 +5,7 @@ This project should be complying with the Ludum Dare *Compo* rules, which state:
 
 ## How to start
 
-Clone this repository into your working folder and open `project.godot` in some text editor. Once open, edit these lines:
+Clone this repository into your working folder and open `project.godot` in some text editor. Once open, edit this line:
 
 ```
 config/name="Godot 4 3D Sample Project"
@@ -37,7 +37,7 @@ Player scene also contains a RayCast which can output the current object that th
 
 Player scene contains three additional screens, which are important to know about:
 
-* `GamePauseScene` — if the player presses `Escape`, the Pause screne is displayed. Player can either continue, turn the music/sounds off (or on) or go back to the main menu 
+* `GamePauseScene` — if the player presses `Escape`, the Pause scene is displayed. Player can either continue, turn the music/sounds off (or on) or go back to the main menu.
 * `GameWonScene` — if the player wins, use the `toggle_game_won()` function, which displays this scene. Once displayed, the player is unable to move.
 * `GameOverScene` — if the player loses, use the `toggle_game_over()` function which displays this scene. Just like with previous one, once it's displayed, the player is unable to move.
 * `TypewriterDialog` — used to display dialogs with `typewriter_dialog.start_dialog([dialog_array], delta)` (described below)
@@ -77,9 +77,11 @@ typewriter_dialog.start_dialog(["First message.", "Second message."], delta)
 
 The first parameter is an array of strings — those are separate dialogs that you want to display right after each other. This array can contain as many strings as you want. The other parameter of the function is `delta`, which should be self-explanatory and takes care of the dialog countdown (the time before another line is displayed automatically). If you do not have a delta available in your function, you can use `get_process_delta_time()`.
 
-Another node which you might find helpful is `PlayerTooltip` node which lets you display a tooltip and set the action to dismiss it.
+## Tooltip
 
-You can set a new tooltip with `player_tooltip.display_tooltip("Text to display", true/false)` where `true` or `false` set whether the tooltip is supposed to flash or not.
+Another node which you might find helpful is `PlayerTooltip` node, which lets you display a tooltip and set the action to dismiss it.
+
+You can set a new tooltip with `player_tooltip.display_tooltip("Text to display", true/false)` where `true` or `false` set the tooltip flashing on or off.
 
 You can set the action with `player_tooltip.set_tooltip_action("action_to_be_performed")` where the action is the input name from the input map. 
 
@@ -94,7 +96,7 @@ You can also dismiss the tooltip with `player_tooltip.dismiss_tooltip()` any tim
 
 ## Scripts
 
-Scripts are separated in their separate `scripts` folder. Apart from `buttons` folder, they generally follow the same structure as their scene counterparts, so, there is not much to describe here.
+Scripts are separated from scenes in the `scripts` folder. Apart from `buttons` folder, they generally follow the same structure as their scene counterparts, so, there is not much to describe here.
 
 ## Assets
 
@@ -112,11 +114,11 @@ This project contains `assets` folder with the following structure:
 
 ## Export to HTML5
 
-If you use this project for a game jam, you are most likely interesting in exporting to web. This is extremely easy. Just follow these steps:
+If you use this project for a game jam, you are most likely insterested in exporting the project to HTML5. This is extremely easy. Just follow these steps:
 
   1. Select `Project` -> `Export...`.
-  1. If you don't have up-to-date `Web (Runnable)`, download it.
-  1. Click on `Export Project...`.
-  1. Select (or created) `export` folder and give your project `index.html` name — important for itch.io!
-  1. Open the `export` folder and put everything from it into a *.zip* file.
-  1. Upload to itch.io as a file that is played in browser. Your project should work right away.
+  1. If you don't have up-to-date `Web (Runnable)` preset, download it.
+  1. Click on `Export Project...` at the bottom of the Export dialog.
+  1. Select (or create) `export` folder and give your project `index.html` name — important for itch.io! This folder is also included in `.gitignore`, which means that its contents will not show as changes in git.
+  1. Open the `export` folder and put all files in it into a new *.zip* file.
+  1. Upload *your_project.zip* to itch.io and set it as file that is played in the browser and set the proper embed resolution. Your project should work right away.
