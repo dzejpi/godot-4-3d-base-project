@@ -4,7 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@onready var camera = $PlayerHead/Camera
+@onready var player_camera = $PlayerHead/Camera
 @onready var ray_cast = $PlayerHead/Camera/RayCast3D
 
 # UI parts
@@ -42,7 +42,7 @@ func _input(event):
 	if !is_game_paused && !is_game_over && !is_game_won:
 		if event is InputEventMouseMotion:
 			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
-			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
+			player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
 	
 	if Input.is_action_just_pressed("game_pause"):
 		if !is_game_over && !is_game_won:
