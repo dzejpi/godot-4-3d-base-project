@@ -11,7 +11,7 @@ const JUMP_VELOCITY = 4.5
 @onready var game_pause_scene = $PlayerUI/GamePauseScene
 @onready var game_over_scene = $PlayerUI/GameEnd/GameOverScene
 @onready var game_won_scene = $PlayerUI/GameEnd/GameWonScene
-@onready var typewriter_dialog_scene = $PlayerUI/GameUI/TypewriterDialogScene
+@onready var typewriter_dialog = $PlayerUI/GameUI/TypewriterDialogScene
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
