@@ -34,8 +34,6 @@ func _ready():
 	game_pause_scene.hide()
 	game_over_scene.hide()
 	game_won_scene.hide()
-	player_tooltip.display_tooltip("Press Space to continue", true)
-	player_tooltip.set_tooltip_action("move_jump")
 
 
 func _process(_delta):
