@@ -12,16 +12,16 @@ var transition_in = false
 
 func _ready():
 	transition_overlay_sprite.modulate.a = 0
-	transition_overlay_sprite.scale.x = get_window().size.x
-	transition_overlay_sprite.scale.y = get_window().size.y
+	transition_overlay_sprite.scale.x = DisplayServer.window_get_size().x
+	transition_overlay_sprite.scale.y = DisplayServer.window_get_size().y
 
 
 func _process(delta):
-	# Redraw if necessary
-	if transition_overlay_sprite.scale.x != get_window().size.x:
-		transition_overlay_sprite.scale.x = get_window().size.x
-	if transition_overlay_sprite.scale.y != get_window().size.y:
-		transition_overlay_sprite.scale.y = get_window().size.y
+	# Seems that redrawing is not necessary
+	#if transition_overlay_sprite.scale.x != DisplayServer.window_get_size().x:
+	#	transition_overlay_sprite.scale.x = DisplayServer.window_get_size().x
+	#if transition_overlay_sprite.scale.y != DisplayServer.window_get_size().y:
+	#	transition_overlay_sprite.scale.y = DisplayServer.window_get_size().y
 	
 	# Handle screen transition
 	if !transition_completed:
