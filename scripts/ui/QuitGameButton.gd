@@ -6,7 +6,7 @@ var platform = OS.get_name()
 
 
 func _ready():
-	if platform == "HTML5":
+	if platform == "Web":
 		self.disabled = true
 
 
