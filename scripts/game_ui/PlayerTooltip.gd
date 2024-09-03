@@ -45,5 +45,6 @@ func display_tooltip(tooltip_text, tooltip_flashing):
 
 
 func dismiss_tooltip():
+	tooltip_label.text = ""
 	is_flashing = false
 	self.hide()
