@@ -16,6 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_d5m1f")
 
 [sub_resource type="Environment" id="Environment_cq50u"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_kwi0q")
 
 [node name="TestScene" type="Node3D"]
@@ -28,10 +29,10 @@ sky = SubResource("Sky_kwi0q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_nl2vq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="WalkingObjects"]
+[node name="GroundStaticBody" type="StaticBody3D" parent="WalkingObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/GroundStaticBody"]
 shape = SubResource("BoxShape3D_dcqyx")
 
 [node name="Transition" type="Node2D" parent="."]
