@@ -27,7 +27,7 @@ shape = SubResource("CapsuleShape3D_votpe")
 
 [node name="Pause" type="Node" parent="PlayerUI"]
 
-[node name="GamePauseScene" parent="PlayerUI" instance=ExtResource("2_s8mh6")]
+[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_s8mh6")]
 visible = false
 
 [node name="GameEnd" type="Node" parent="PlayerUI"]
@@ -38,6 +38,6 @@ visible = false
 [node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_ilfnc")]
 visible = false
 
-[node name="GameUI" type="Node2D" parent="PlayerUI"]
+[node name="GameUI" type="Node" parent="PlayerUI"]
 
 [node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("4_x0qso")]

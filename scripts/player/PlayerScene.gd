@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 4.5
 @onready var ray_cast = $PlayerHead/Camera/RayCast3D
 
 # UI parts
-@onready var game_pause_scene = $PlayerUI/GamePauseScene
+@onready var game_pause_scene = $PlayerUI/Pause/GamePauseScene
 @onready var game_over_scene = $PlayerUI/GameEnd/GameOverScene
 @onready var game_won_scene = $PlayerUI/GameEnd/GameWonScene
 @onready var typewriter_dialog = $PlayerUI/GameUI/TypewriterDialogScene
