@@ -5,6 +5,7 @@ var time_out = 0
 @onready var transition_overlay_sprite = $TransitionOverlaySprite
 
 var transition_time_out = 0
+var transition_speed = 2
 var transition_completed = true
 var transition_in = false
 
@@ -25,7 +26,7 @@ func _process(delta):
 	# Handle screen transition
 	if !transition_completed:
 		if transition_time_out < 1:
-			transition_time_out += (2 * delta)
+			transition_time_out += (transition_speed * delta)
 			if transition_in:
 				transition_overlay_sprite.modulate.a = transition_time_out
 			else:
@@ -38,8 +39,8 @@ func fade_in():
 	transition_completed = false
 	transition_time_out = 0
 	transition_in = true
-	
-	
+
+
 func fade_out():
 	transition_completed = false
 	transition_time_out = 0
