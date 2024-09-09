@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7c7nkle31np"]
+
+[ext_resource type="Script" path="res://scripts/player/CarPlayerScene.gd" id="1_34pww"]
+[ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/GamePauseScene.tscn" id="2_05n05"]
+[ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/GameOverScene.tscn" id="3_3tre3"]
+[ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/GameWonScene.tscn" id="4_psva1"]
+[ext_resource type="PackedScene" uid="uid://d0k77qlot24nc" path="res://scenes/game_ui/TypewriterDialogScene.tscn" id="5_hvome"]
+[ext_resource type="PackedScene" uid="uid://uqsnfk54cjss" path="res://scenes/game_ui/PlayerTooltip.tscn" id="6_1bqp2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rokhi"]
+
+[node name="CarPlayerScene" type="CharacterBody3D"]
+script = ExtResource("1_34pww")
+
+[node name="PlayerHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Camera" type="Camera3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera"]
+target_position = Vector3(0, 0, -3)
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_rokhi")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="BodyCollisionShape"]
+
+[node name="PlayerUI" type="Node" parent="."]
+
+[node name="Pause" type="Node" parent="PlayerUI"]
+
+[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_05n05")]
+visible = false
+
+[node name="GameEnd" type="Node" parent="PlayerUI"]
+
+[node name="GameOverScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_3tre3")]
+visible = false
+
+[node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("4_psva1")]
+visible = false
+
+[node name="GameUI" type="Node" parent="PlayerUI"]
+
+[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("5_hvome")]
+
+[node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_1bqp2")]
+position = Vector2(0, 392)
