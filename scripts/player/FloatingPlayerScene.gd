@@ -65,20 +65,17 @@ func _input(event):
 
 
 func _physics_process(delta):
-	# Slow both ascent and descent to 0 
-	velocity.y = lerp(velocity.y, 0.0, delta)
+	# Floating upwards/downwards
+	if Input.is_action_pressed("move_jump"):
+		velocity.y += FLOAT_VELOCITY
+	elif Input.is_action_pressed("move_crouch"):
+		velocity.y += FLOAT_VELOCITY * -1
+	else:
+		velocity.y = lerp(velocity.y, 0.0, delta)
 	
 	# Nonstop pull downwards
 	if is_pulled_down:
 		velocity.y -= (gravity / 256) * delta
-	
-	# Floating upwards
-	if Input.is_action_pressed("move_jump"):
-		velocity.y += FLOAT_VELOCITY
-	
-	# Going downwards
-	if Input.is_action_pressed("move_crouch"):
-		velocity.y += FLOAT_VELOCITY * -1
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
