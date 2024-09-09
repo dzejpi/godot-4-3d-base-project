@@ -42,6 +42,17 @@ Player scene contains three additional screens, which are important to know abou
 * `GameOverScene` — if the player loses, use the `toggle_game_over()` function which displays this scene. Just like with previous one, once it's displayed, the player is unable to move.
 * `TypewriterDialog` — used to display dialogs with `typewriter_dialog.start_dialog([dialog_array], delta)` (described below)
 
+### Floating player controller
+
+FPS controller might not be suitable for all projects. This is the reason this project also contains `FloatingPlayerScene.tscn`, which is very similar to the `PlayerScene.tscn`, but with a slight difference in the physics and behavior. Physics here simulate moving freely with little (or no) gravity. This can be used for games where the player is swimming underwater the whole time, but it is also applicable as submarine controller or even spaceship controller.
+
+The differentiating factor here is the `is_pulled_down` variable: 
+	
+	* If `true`, a small gravity is always applied to the player, always pulling them down slightly a bit (unless the player is on the floor) — useful for players swimming underwater as this makes it feel more engaging. 
+	* If `false`, there is no gravity pull at all, meaning that the player stays in the same spot. Can be used for submarines and space stations as this basically offers a player a free no-gravity movement.
+
+Player can move upwards by holding `Space` and go downwards by holding `Ctrl`. Otherwise, `Y` vector is lerped to 0 to simulate the water resistance and to prevent the player from moving on Y axis endlessly.
+
 ## Global scene
 
 There are two global scenes in the project. First is the `GlobalScene.tscn`. This scene is autoloaded as a general global scene right at the beginning, and contains `SfxPlayer`, which is set to play sounds and `MusicPlayer`, which is set to play music.
