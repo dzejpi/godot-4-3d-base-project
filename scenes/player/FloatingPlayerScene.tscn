@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://5w17t4cy1s3a"]
+
+[ext_resource type="Script" path="res://scripts/player/FloatingPlayerScene.gd" id="1_bkq84"]
+[ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/GamePauseScene.tscn" id="2_u7ylh"]
+[ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/GameOverScene.tscn" id="3_jljb4"]
+[ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/GameWonScene.tscn" id="4_23rr2"]
+[ext_resource type="PackedScene" uid="uid://d0k77qlot24nc" path="res://scenes/game_ui/TypewriterDialogScene.tscn" id="5_pf534"]
+[ext_resource type="PackedScene" uid="uid://uqsnfk54cjss" path="res://scenes/game_ui/PlayerTooltip.tscn" id="6_utufl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
+
+[node name="FloatingPlayerScene" type="CharacterBody3D"]
+script = ExtResource("1_bkq84")
+
+[node name="PlayerHead" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera"]
+target_position = Vector3(0, 0, -3)
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_votpe")
+
+[node name="PlayerUI" type="Node" parent="."]
+
+[node name="Pause" type="Node" parent="PlayerUI"]
+
+[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_u7ylh")]
+visible = false
+
+[node name="GameEnd" type="Node" parent="PlayerUI"]
+
+[node name="GameOverScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_jljb4")]
+visible = false
+
+[node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("4_23rr2")]
+visible = false
+
+[node name="GameUI" type="Node" parent="PlayerUI"]
+
+[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("5_pf534")]
+
+[node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_utufl")]
+position = Vector2(0, 392)
