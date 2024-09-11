@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 15.0
 const TURN_SPEED = 20
 const JUMP_VELOCITY = 4.5
+const FRICTION = 2
 
 @onready var player_camera = $PlayerHead/Camera
 @onready var ray_cast = $PlayerHead/Camera/RayCast3D
@@ -63,6 +64,9 @@ func _input(event):
 
 
 func _physics_process(delta):
+	velocity.x = 0
+	#velocity.z = 0
+	
 	if Input.is_action_pressed("move_up"):
 		var forward_direction = -transform.basis.z.normalized()
 		velocity = forward_direction * SPEED
@@ -71,15 +75,19 @@ func _physics_process(delta):
 		velocity = forward_direction * SPEED * -1
 	else:
 		var forward_direction = -transform.basis.z.normalized()
-		velocity = forward_direction * SPEED * 0
+		velocity = velocity.lerp(Vector3.ZERO, FRICTION * delta)
 	
 	if Input.is_action_pressed("move_left"):
 		rotation_degrees.y += TURN_SPEED * delta
 	elif Input.is_action_pressed("move_right"):
 		rotation_degrees.y -= TURN_SPEED * delta
 	
-	velocity.y -= gravity * 10 * delta
+	if not is_on_floor():
+		velocity.y -= gravity * 10 * delta
+	else:
+		velocity.y = 0
 	
+	set_velocity(velocity)
 	move_and_slide()
 
 
