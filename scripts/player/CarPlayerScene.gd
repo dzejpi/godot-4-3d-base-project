@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
 
-const SPEED = 15.0
-const TURN_SPEED = 20
+const ACCELERATION = 10.0
+const MAX_SPEED = 180
+const MAX_REVERSE_SPEED = -60
+const TURN_SPEED = 60
 const JUMP_VELOCITY = 4.5
-const FRICTION = 2
+const BREAKING_SPEED = 10.0
 
 @onready var player_camera = $PlayerHead/Camera
 @onready var ray_cast = $PlayerHead/Camera/RayCast3D
@@ -15,7 +17,7 @@ const FRICTION = 2
 @onready var game_won_scene = $PlayerUI/GameEnd/GameWonScene
 @onready var typewriter_dialog = $PlayerUI/GameUI/TypewriterDialogScene
 @onready var player_tooltip = $PlayerUI/GameUI/PlayerTooltip
-
+@onready var speed_label = $PlayerUI/GameUI/SpeedLabel
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,6 +27,8 @@ var mouse_sensitivity = 0.75
 var is_game_paused = false
 var is_game_over = false
 var is_game_won = false
+
+var current_speed = 0.0
 
 var debug = false
 
@@ -40,6 +44,9 @@ func _ready():
 
 func _process(_delta):
 	process_collisions()
+	
+	speed_label.text = str(int(current_speed))
+	
 	# Update pause state if the user clicks on Continue
 	if is_game_paused:
 		listen_for_pause_button_change()
@@ -68,19 +75,32 @@ func _physics_process(delta):
 	#velocity.z = 0
 	
 	if Input.is_action_pressed("move_up"):
-		var forward_direction = -transform.basis.z.normalized()
-		velocity = forward_direction * SPEED
+		if current_speed < MAX_SPEED:
+			current_speed += ACCELERATION * delta
 	elif Input.is_action_pressed("move_down"):
-		var forward_direction = -transform.basis.z.normalized()
-		velocity = forward_direction * SPEED * -1
+		if current_speed > MAX_REVERSE_SPEED:
+			current_speed -= ACCELERATION * 2 * delta
 	else:
-		var forward_direction = -transform.basis.z.normalized()
-		velocity = velocity.lerp(Vector3.ZERO, FRICTION * delta)
+		if current_speed > 2:
+			current_speed -= BREAKING_SPEED * delta
+		elif current_speed < -2:
+			current_speed += BREAKING_SPEED * delta
+		else:
+			current_speed = 0
+	
+	var forward_direction = -transform.basis.z.normalized()
+	velocity = forward_direction * current_speed
 	
 	if Input.is_action_pressed("move_left"):
-		rotation_degrees.y += TURN_SPEED * delta
+		if current_speed > 2:
+			rotation_degrees.y += TURN_SPEED * delta
+		elif current_speed < -2:
+			rotation_degrees.y -= TURN_SPEED * delta
 	elif Input.is_action_pressed("move_right"):
-		rotation_degrees.y -= TURN_SPEED * delta
+		if current_speed > 2:
+			rotation_degrees.y -= TURN_SPEED * delta
+		elif current_speed < -2:
+			rotation_degrees.y += TURN_SPEED * delta
 	
 	if not is_on_floor():
 		velocity.y -= gravity * 10 * delta

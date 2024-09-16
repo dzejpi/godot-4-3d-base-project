@@ -48,3 +48,11 @@ visible = false
 
 [node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_1bqp2")]
 position = Vector2(0, 392)
+
+[node name="SpeedLabel" type="Label" parent="PlayerUI/GameUI"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 272.0
+offset_bottom = 48.0
+text = "Current speed: 100"
+vertical_alignment = 1
