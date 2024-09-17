@@ -14,6 +14,7 @@ const JUMP_VELOCITY = 4.5
 @onready var typewriter_dialog = $PlayerUI/GameUI/TypewriterDialogScene
 @onready var player_tooltip = $PlayerUI/GameUI/PlayerTooltip
 
+@export var is_fov_dynamic = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -85,24 +86,29 @@ func _physics_process(delta):
 			if !is_game_paused && !is_game_over && !is_game_won:
 				velocity.x = direction.x * SPEED * 2
 				velocity.z = direction.z * SPEED * 2
-				increase_fov(delta)
+				if is_fov_dynamic:
+					increase_fov(delta)
 			else:
 				velocity.x = direction.x * 0
 				velocity.z = direction.z * 0
-				decrease_fov(delta)
+				if is_fov_dynamic:
+					decrease_fov(delta)
 		else:
 			if !is_game_paused && !is_game_over && !is_game_won:
 				velocity.x = direction.x * SPEED
 				velocity.z = direction.z * SPEED
-				decrease_fov(delta)
+				if is_fov_dynamic:
+					decrease_fov(delta)
 			else:
 				velocity.x = direction.x * 0
 				velocity.z = direction.z * 0
-				decrease_fov(delta)
+				if is_fov_dynamic:
+					decrease_fov(delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		decrease_fov(delta)
+		if is_fov_dynamic:
+			decrease_fov(delta)
 	
 	move_and_slide()
 
@@ -170,4 +176,3 @@ func decrease_fov(delta):
 
 func change_fov(new_fov):
 	player_camera.fov = new_fov
-	print("Current FOV: " + str(new_fov))
