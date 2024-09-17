@@ -24,10 +24,16 @@ var is_game_paused = false
 var is_game_over = false
 var is_game_won = false
 
+var base_fov = 90
+var increased_fov = 94
+var current_fov = base_fov
+var fov_change_speed = 5
+
 var debug = false
 
 
 func _ready():
+	player_camera.fov = current_fov
 	transition_overlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	is_game_paused = false
@@ -79,19 +85,24 @@ func _physics_process(delta):
 			if !is_game_paused && !is_game_over && !is_game_won:
 				velocity.x = direction.x * SPEED * 2
 				velocity.z = direction.z * SPEED * 2
+				increase_fov(delta)
 			else:
 				velocity.x = direction.x * 0
 				velocity.z = direction.z * 0
+				decrease_fov(delta)
 		else:
 			if !is_game_paused && !is_game_over && !is_game_won:
 				velocity.x = direction.x * SPEED
 				velocity.z = direction.z * SPEED
+				decrease_fov(delta)
 			else:
 				velocity.x = direction.x * 0
 				velocity.z = direction.z * 0
+				decrease_fov(delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		decrease_fov(delta)
 	
 	move_and_slide()
 
@@ -132,3 +143,31 @@ func toggle_game_won():
 	is_game_won = true
 	game_won_scene.show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func increase_fov(delta):
+	current_fov = player_camera.fov
+	if current_fov < increased_fov:
+		current_fov += fov_change_speed * delta
+		
+		if current_fov > increased_fov:
+			current_fov = increased_fov
+		
+		change_fov(current_fov)
+
+
+func decrease_fov(delta):
+	current_fov = player_camera.fov
+	
+	if current_fov > base_fov:
+		current_fov -= fov_change_speed * delta * 8
+		
+		if current_fov < base_fov:
+			current_fov = base_fov
+		
+		change_fov(current_fov)
+
+
+func change_fov(new_fov):
+	player_camera.fov = new_fov
+	print("Current FOV: " + str(new_fov))
