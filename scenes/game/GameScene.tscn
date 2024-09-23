@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn4i7tal0cmhg"]
+[gd_scene load_steps=6 format=3 uid="uid://dn4i7tal0cmhg"]
 
 [ext_resource type="Script" path="res://scripts/game/GameScene.gd" id="1_kwbbw"]
-[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="1_lyxt3"]
 [ext_resource type="PackedScene" uid="uid://b8tc7q5tq6x8m" path="res://scenes/player/PlayerScene.tscn" id="2_rd5ok"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_psv6s"]
@@ -17,10 +16,6 @@ sky = SubResource("Sky_v1kyu")
 script = ExtResource("1_kwbbw")
 
 [node name="PlayerScene" parent="." instance=ExtResource("2_rd5ok")]
-
-[node name="Transition" type="Node2D" parent="."]
-
-[node name="TransitionOverlayScene" parent="Transition" instance=ExtResource("1_lyxt3")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7nmuq")

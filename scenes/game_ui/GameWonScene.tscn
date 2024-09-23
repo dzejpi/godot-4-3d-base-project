@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpoy7p032mikq"]
+[gd_scene load_steps=8 format=3 uid="uid://cpoy7p032mikq"]
 
 [ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_ata5d"]
 [ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="2_8p1md"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_m6wl1"]
 [ext_resource type="Script" path="res://scripts/game_ui/QuitGameButton.gd" id="6_i45uk"]
 [ext_resource type="Script" path="res://scripts/game_ui/MainMenuButtons.gd" id="7_f6j8x"]
-[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="8_hjvdx"]
 
 [node name="GameWonScene" type="Node2D"]
 
@@ -58,10 +57,6 @@ offset_bottom = 64.0
 text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Overlay" type="Node2D" parent="."]
-
-[node name="TransitionOverlayScene" parent="Overlay" instance=ExtResource("8_hjvdx")]
 
 [connection signal="pressed" from="GameWonButtons/QuitGameButton" to="GameWonButtons/QuitGameButton" method="_on_pressed"]
 [connection signal="pressed" from="GameWonButtons/MainMenuButtons" to="GameWonButtons/MainMenuButtons" method="_on_pressed"]

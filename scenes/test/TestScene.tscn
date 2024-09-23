@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://62w3n2fpdpaq"]
+[gd_scene load_steps=7 format=3 uid="uid://62w3n2fpdpaq"]
 
 [ext_resource type="PackedScene" uid="uid://b8tc7q5tq6x8m" path="res://scenes/player/PlayerScene.tscn" id="1_1xwv1"]
-[ext_resource type="PackedScene" uid="uid://bbskyjni86vuh" path="res://scenes/ui/TransitionOverlayScene.tscn" id="2_kmkt3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nl2vq"]
 size = Vector3(32, 1, 32)
@@ -34,10 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/GroundStaticBody"]
 shape = SubResource("BoxShape3D_dcqyx")
-
-[node name="Transition" type="Node2D" parent="."]
-
-[node name="TransitionOverlayScene" parent="Transition" instance=ExtResource("2_kmkt3")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cq50u")

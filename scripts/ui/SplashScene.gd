@@ -29,6 +29,8 @@ var skip_splash = false
 
 
 func _ready():
+	transition_overlay.fade_out()
+	
 	# Set the sprite into the center according to the window size
 	dev_logo_sprite.position.x = (screen_width / 2)
 	dev_logo_sprite.position.y = (screen_height / 2)
