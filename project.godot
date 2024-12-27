@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Godot 4 3D Sample Project"
-run/main_scene="res://scenes/ui/SplashScene.tscn"
+run/main_scene="res://scenes/ui/splash_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-global_var="*res://scenes/global/GlobalScene.tscn"
-transition_overlay="*res://scenes/ui/TransitionOverlayScene.tscn"
+global_var="*res://scenes/global/global_scene.tscn"
+transition_overlay="*res://scenes/ui/transition_overlay_scene.tscn"
 
 [display]
 

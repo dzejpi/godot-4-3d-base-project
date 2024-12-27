@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0k77qlot24nc"]
 
 [ext_resource type="Texture2D" uid="uid://c34t687ys3xjh" path="res://assets/sprites/dialogue/dialogue_text_background.png" id="1_lece7"]
-[ext_resource type="Script" path="res://scripts/game_ui/TypewriterDialogScene.gd" id="1_sml3d"]
+[ext_resource type="Script" path="res://scripts/game_ui/typewriter_dialog_scene.gd" id="1_sml3d"]
 
 [node name="TypewriterDialogScene" type="Node2D"]
 script = ExtResource("1_sml3d")

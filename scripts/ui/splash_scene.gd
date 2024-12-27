@@ -115,4 +115,4 @@ func go_to_main_menu(_delta):
 		transition_overlay.fade_in()
 	
 	if transition_overlay.transition_completed:
-		get_tree().change_scene_to_file("res://scenes/ui/MainMenuScene.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu_scene.tscn")

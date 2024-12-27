@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/kenney_rocket.ttf-9111e477c19c8001294944fde60
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

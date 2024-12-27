@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://b8tc7q5tq6x8m"]
 
-[ext_resource type="Script" path="res://scripts/player/PlayerScene.gd" id="1_63dc3"]
-[ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/GameOverScene.tscn" id="2_n2ncv"]
-[ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/GamePauseScene.tscn" id="2_s8mh6"]
-[ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/GameWonScene.tscn" id="3_ilfnc"]
-[ext_resource type="PackedScene" uid="uid://d0k77qlot24nc" path="res://scenes/game_ui/TypewriterDialogScene.tscn" id="4_x0qso"]
-[ext_resource type="PackedScene" uid="uid://uqsnfk54cjss" path="res://scenes/game_ui/PlayerTooltip.tscn" id="6_km5q6"]
+[ext_resource type="Script" path="res://scripts/player/player_scene.gd" id="1_63dc3"]
+[ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/game_over_scene.tscn" id="2_n2ncv"]
+[ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/game_pause_scene.tscn" id="2_s8mh6"]
+[ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/game_won_scene.tscn" id="3_ilfnc"]
+[ext_resource type="PackedScene" uid="uid://d0k77qlot24nc" path="res://scenes/game_ui/typewriter_dialog_scene.tscn" id="4_x0qso"]
+[ext_resource type="PackedScene" uid="uid://uqsnfk54cjss" path="res://scenes/game_ui/player_tooltip.tscn" id="6_km5q6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
 

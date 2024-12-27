@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/kenney_pixel.ttf-fd67aa4bbfbc84925113898ca6c6
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

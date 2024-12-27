@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/kenney_future.ttf-51143f9ffa0f13d72d68fe9a2e6
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
