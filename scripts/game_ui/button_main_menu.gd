@@ -1,15 +1,14 @@
 extends TextureButton
 
 
-var is_button_pressed = false
+var is_button_pressed: bool = false
 
 
-func _process(_delta):
-	if is_button_pressed:
-		if transition_overlay.transition_completed:
-			get_tree().change_scene_to_file("res://scenes/ui/main_menu_scene.tscn")
+func _process(_delta: float) -> void:
+	if is_button_pressed and TransitionOverlay.is_transition_completed:
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu_scene.tscn")
 
 
-func _on_pressed():
+func _on_pressed() -> void:
 	is_button_pressed = true
-	transition_overlay.fade_in()
+	TransitionOverlay.fade_in()

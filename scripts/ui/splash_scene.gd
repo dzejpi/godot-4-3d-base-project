@@ -1,118 +1,91 @@
 extends Node2D
 
+# Dynamic array of logos
+@onready var logo_sprites: Array[Sprite2D] = [
+	$Logos/DevLogoSprite,
+	$Logos/JamLogoSprite,
+]
 
-@onready var dev_logo_sprite = $Logos/DevLogoSprite
-@onready var jam_logo_sprite = $Logos/JamLogoSprite
+# Default screen size, adjusted dynamically later
+var screen_size: Vector2 = Vector2(1280, 720)
 
-var screen_width = 1280.0
-var screen_height = 720.0
+# Which logo is displayed
+var current_logo_index: int = 0
 
-# Logos displayed
-var logos_displayed = 0
-var logo_display_speed = 1
-var logo_show_off_speed = 1
-var logo_show_off_timer = 0
-var logo_show_off = false
-var logo_displaying = true
+var logo_fade_speed: float = 1.0
+var logo_display_time: float = 1.0
 
-var everything_displayed = false
+var logo_timer: float = 0.0
+var is_fading_in: bool = true
+var is_splash_complete: bool = false
 
 # Startup delay
-var startup_delay = true
-var startup_delay_timer = 0
+var startup_delay: float = 0.0
+var startup_delay_duration: float = 0.5
 
-# Transition at the end
-var transition_time_out = 0
-
-# Skip this scene
-var skip_splash = false
+# Skip this scene (for debug purposes)
+var skip_splash: bool = false
 
 
-func _ready():
-	transition_overlay.fade_out()
+func _ready() -> void:
+	TransitionOverlay.fade_out()
 	
-	# Set the sprite into the center according to the window size
-	dev_logo_sprite.position.x = (screen_width / 2)
-	dev_logo_sprite.position.y = (screen_height / 2)
-	# Opacity
-	dev_logo_sprite.modulate.a = 0
-	
-	jam_logo_sprite.position.x = (screen_width / 2)
-	jam_logo_sprite.position.y = (screen_height / 2)
-	# Opacity
-	jam_logo_sprite.modulate.a = 0
-	
+	# Center logos and set initial transparency
+	for logo in logo_sprites:
+		logo.position = screen_size / 2
+		logo.modulate.a = 0.0
+		
 	if skip_splash:
-		logos_displayed = 2
+		is_splash_complete = true
+		go_to_main_menu()
+		
+	# Connect resizing event
+	get_viewport().size_changed.connect(update_screen_size)
 
 
-func _process(delta):
+func update_screen_size() -> void:
+	screen_size = get_viewport().size
+	for logo in logo_sprites:
+		logo.position = screen_size / 2
+
+
+func _process(delta: float) -> void:
+	if is_splash_complete:
+		return
 	
-	# Make sure that the logo positions rerender in case user changes the window size on splash
-	screen_width = 1280
-	screen_height = 720
+	if startup_delay < startup_delay_duration:
+		startup_delay += delta
+		return
 	
-	dev_logo_sprite.position.x = (screen_width / 2)
-	dev_logo_sprite.position.y = (screen_height / 2)
-	
-	jam_logo_sprite.position.x = (screen_width / 2)
-	jam_logo_sprite.position.y = (screen_height / 2)
-	
-	if startup_delay:
-		if startup_delay_timer <= (logo_show_off_speed / 1.75):
-				startup_delay_timer += (logo_show_off_speed * delta)
-		else:
-			startup_delay = false
+	process_logo_fade(delta)
+
+
+func process_logo_fade(delta: float) -> void:
+	var logo: Sprite2D = logo_sprites[current_logo_index]
+	if is_fading_in:
+		logo.modulate.a = min(logo.modulate.a + (logo_fade_speed * delta), 1.0)
+		if logo.modulate.a >= 1.0:
+			logo_timer += delta
+			if logo_timer >= logo_display_time:
+				is_fading_in = false
+				logo_timer = 0.0
 	else:
-		match logos_displayed:
-			0:
-				process_dev_logo(delta)
-			1:
-				process_jam_logo(delta)
-			2:
-				go_to_main_menu(delta)
+		logo.modulate.a = max(logo.modulate.a - (logo_fade_speed * delta), 0.0)
+		if logo.modulate.a <= 0.0:
+			current_logo_index += 1
+			is_fading_in = true
+			logo_timer = 0.0
+			
+			if current_logo_index >= logo_sprites.size():
+				is_splash_complete = true
+				go_to_main_menu()
 
 
-func process_dev_logo(delta):
-	if logo_displaying:
-		if dev_logo_sprite.modulate.a < 1:
-			dev_logo_sprite.modulate.a += (logo_display_speed * delta)
-		else:
-			if logo_show_off_timer <= logo_show_off_speed:
-				logo_show_off_timer += (logo_show_off_speed * delta)
-			else:
-				logo_show_off_timer = 0
-				logo_displaying = false
-	else:
-		if dev_logo_sprite.modulate.a > 0:
-			dev_logo_sprite.modulate.a -= (logo_display_speed * delta)
-		else:
-			logos_displayed += 1
-			logo_displaying = true
-
-
-func process_jam_logo(delta):
-	if logo_displaying:
-		if jam_logo_sprite.modulate.a < 1:
-			jam_logo_sprite.modulate.a += (logo_display_speed * delta)
-		else:
-			if logo_show_off_timer <= logo_show_off_speed:
-				logo_show_off_timer += (logo_show_off_speed * delta)
-			else:
-				logo_show_off_timer = 0
-				logo_displaying = false
-	else:
-		if jam_logo_sprite.modulate.a > 0:
-			jam_logo_sprite.modulate.a -= (logo_display_speed * delta)
-		else:
-			logos_displayed += 1
-			logo_displaying = true
-
-
-func go_to_main_menu(_delta):
-	if !everything_displayed:
-		everything_displayed = true
-		transition_overlay.fade_in()
+func go_to_main_menu() -> void:
+	TransitionOverlay.fade_in()
 	
-	if transition_overlay.transition_completed:
-		get_tree().change_scene_to_file("res://scenes/ui/main_menu_scene.tscn")
+	# Wait until is_transition_completed turns to true
+	while not TransitionOverlay.is_transition_completed:
+		await get_tree().process_frame
+	
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu_scene.tscn")

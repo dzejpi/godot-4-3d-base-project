@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global_var="*res://scenes/global/global_scene.tscn"
-transition_overlay="*res://scenes/ui/transition_overlay_scene.tscn"
+GlobalVar="*res://scenes/global/global_scene.tscn"
+TransitionOverlay="*res://scenes/ui/transition_overlay_scene.tscn"
 
 [display]
 

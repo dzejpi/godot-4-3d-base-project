@@ -1,34 +1,28 @@
 extends TextureButton
 
-@onready var music_label = $MusicLabel
-var is_music_on = true
+
+@onready var music_label: Label = $MusicLabel
+@onready var music_bus: int = AudioServer.get_bus_index("Music")
+
+var is_music_on: bool = true
 
 
-func _ready():
-	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")):
-		is_music_on = false
-		music_label.text = "Music: off"
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-		button_pressed = false
-		release_focus()
-	else:
-		is_music_on = true
-		music_label.text = "Music: on"
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-		button_pressed = true
-		release_focus()
+func _ready() -> void:
+	is_music_on = not AudioServer.is_bus_mute(music_bus)
+	update_music_state()
 
 
-func _on_pressed():
+func _on_pressed() -> void:
+	is_music_on = not is_music_on
+	update_music_state()
+
+
+func update_music_state() -> void:
+	AudioServer.set_bus_mute(music_bus, not is_music_on)
 	if is_music_on:
-		is_music_on = false
-		music_label.text = "Music: off"
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-		button_pressed = false
-		release_focus()
+		music_label.text = "Music: on" 
 	else:
-		is_music_on = true
-		music_label.text = "Music: on"
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-		button_pressed = true
-		release_focus()
+		music_label.text = "Music: off"
+	
+	button_pressed = is_music_on
+	release_focus()

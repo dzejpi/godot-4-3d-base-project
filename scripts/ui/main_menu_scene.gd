@@ -1,25 +1,24 @@
 extends Node2D
 
 
-var current_focus = "main_menu"
-var main_menu_x_position = 0.0
-var credits_x_position = -1280.0
+var current_focus: String = "main_menu"
+
+var focus_positions: Dictionary = {
+	"main_menu": 0.0,
+	"credits": -1280.0
+}
 
 
-func _ready():
-	transition_overlay.fade_out()
+func _ready() -> void:
+	TransitionOverlay.fade_out()
 
 
-func _process(delta):
-	match(current_focus):
-		"main_menu":
-			if position.x != main_menu_x_position:
-				position.x = lerp(position.x, main_menu_x_position, 5 * delta)
-		"credits":
-			if position.x != credits_x_position:
-				position.x = lerp(position.x, credits_x_position, 5 * delta)
+func _process(delta: float) -> void:
+	if current_focus in focus_positions:
+		var target_x = focus_positions[current_focus]
+		if not is_equal_approx(position.x, target_x):
+			position.x = lerp(position.x, target_x, 5 * delta)
 
 
-func change_focus(new_focus):
-	if current_focus != new_focus:
-		current_focus = new_focus
+func change_focus(new_focus: String) -> void:
+	current_focus = new_focus

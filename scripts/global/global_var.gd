@@ -1,34 +1,35 @@
 extends Node
 
 
-@onready var music_node = $MusicPlayer
-@onready var sfx_node = $SfxPlayer
+@onready var music_node: AudioStreamPlayer = $MusicPlayer
+@onready var sfx_node: AudioStreamPlayer = $SfxPlayer
 
-# Necessary to replace null with a proper preload("res://...")
-var music_game_music = null
+# Assigned in Inspector
+@export var music_game_music: AudioStream
 
-# Necessary to replace null with a proper preload("res://...")
-var sfx_sound_placeholder = null
-
-
-func play_music():
-	music_node.stream = music_game_music
-	music_node.play()
+# Replace null with a proper preload("res://...")
+# Or delete fully and set everything through Inspector
+@export var sfx_sounds: Dictionary = {
+	"placeholder": null
+}
 
 
-func stop_music():
+func play_music() -> void:
+	if music_game_music:
+		music_node.stream = music_game_music
+		music_node.play()
+
+
+func stop_music() -> void:
 	music_node.stop()
 
 
-func play_sound(sfx_name):
-	match(sfx_name):
-		"placeholder":
-			sfx_node.stream = sfx_sound_placeholder
-			sfx_node.play()
+func play_sound(sfx_name: String) -> void:
+	if sfx_name in sfx_sounds and sfx_sounds[sfx_name]:
+		sfx_node.stream = sfx_sounds[sfx_name]
+		sfx_node.play()
 
 
-func stop_sound(sfx_name):
-	match(sfx_name):
-		"placeholder":
-			sfx_node.stream = sfx_sound_placeholder
-			sfx_node.stop()
+func stop_sound(sfx_name: String) -> void:
+	if sfx_name in sfx_sounds and sfx_sounds[sfx_name]:
+		sfx_node.stop()

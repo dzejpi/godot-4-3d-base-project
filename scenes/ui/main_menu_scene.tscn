@@ -78,7 +78,7 @@ text = "Sounds: on"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsButton" type="TextureButton" parent="MainMenuSection/MenuButtons"]
+[node name="CreditsButton" type="TextureButton" parent="MainMenuSection/MenuButtons" node_paths=PackedStringArray("main_menu_scene")]
 offset_top = 288.0
 offset_right = 256.0
 offset_bottom = 352.0
@@ -88,6 +88,7 @@ texture_hover = ExtResource("3_jn4kh")
 texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("8_8g4id")
+main_menu_scene = NodePath("../../..")
 
 [node name="CreditsLabel" type="Label" parent="MainMenuSection/MenuButtons/CreditsButton"]
 layout_mode = 0
@@ -133,7 +134,7 @@ vertical_alignment = 1
 [node name="BackButton" type="Node2D" parent="CreditsSection"]
 position = Vector2(512, 592)
 
-[node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton"]
+[node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton" node_paths=PackedStringArray("main_menu_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
 texture_normal = ExtResource("1_kpkvn")
@@ -142,6 +143,7 @@ texture_hover = ExtResource("3_jn4kh")
 texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("12_84rwi")
+main_menu_scene = NodePath("../../..")
 
 [node name="BackButtonLabel" type="Label" parent="CreditsSection/BackButton/BackButton"]
 layout_mode = 0

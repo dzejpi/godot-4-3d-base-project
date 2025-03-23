@@ -35,7 +35,7 @@ var debug = false
 
 func _ready():
 	player_camera.fov = current_fov
-	transition_overlay.fade_out()
+	TransitionOverlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	is_game_paused = false
 	game_pause_scene.hide()

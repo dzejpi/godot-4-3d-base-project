@@ -1,8 +1,8 @@
 extends Node2D
 
 
-var is_game_paused = false
+var is_game_paused: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	is_game_paused = false

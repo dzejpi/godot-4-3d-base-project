@@ -16,7 +16,7 @@ script = ExtResource("1_lp3de")
 
 [node name="PauseButtons" type="Node2D" parent="."]
 
-[node name="ContinueGameButton" type="TextureButton" parent="PauseButtons"]
+[node name="ContinueGameButton" type="TextureButton" parent="PauseButtons" node_paths=PackedStringArray("game_pause_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
 texture_normal = ExtResource("1_fati3")
@@ -25,6 +25,7 @@ texture_hover = ExtResource("3_yrxtn")
 texture_disabled = ExtResource("4_w2s7p")
 texture_focused = ExtResource("5_my72x")
 script = ExtResource("6_hntig")
+game_pause_scene = NodePath("../..")
 
 [node name="ContinueGameLabel" type="Label" parent="PauseButtons/ContinueGameButton"]
 layout_mode = 0
