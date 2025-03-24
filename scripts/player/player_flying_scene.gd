@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED: float = 10.0
-const TURN_SPEED: float = 15.0
+const TURN_SPEED: float = 200.0
 
 @onready var ray_cast: RayCast3D = $PlayerHead/Camera/RayCast3D
 
@@ -40,15 +40,21 @@ func _physics_process(delta: float) -> void:
 	var forward_direction = -transform.basis.z.normalized()
 	velocity = forward_direction * SPEED
 	
+	var pitch = rotation_degrees.x
+	var yaw = rotation_degrees.y
+	
 	if Input.is_action_pressed("move_up"):
-		rotation_degrees.x += TURN_SPEED * delta
+		pitch += TURN_SPEED * delta
 	elif Input.is_action_pressed("move_down"):
-		rotation_degrees.x -= TURN_SPEED * delta
+		pitch -= TURN_SPEED * delta
 
 	if Input.is_action_pressed("move_left"):
-		rotation_degrees.y += TURN_SPEED * delta
+		yaw -= TURN_SPEED * delta
 	elif Input.is_action_pressed("move_right"):
-		rotation_degrees.y -= TURN_SPEED * delta
+		yaw += TURN_SPEED * delta
+	
+	rotation_degrees.x = lerp_angle(rotation_degrees.x, pitch, 0.1)
+	rotation_degrees.y = lerp_angle(rotation_degrees.y, yaw, 0.1)
 	
 	move_and_slide()
 
