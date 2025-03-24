@@ -1,74 +1,62 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED: float = 5.0
+const JUMP_VELOCITY: float = 4.5
 
-@onready var player_camera = $PlayerHead/Camera
-@onready var ray_cast = $PlayerHead/Camera/RayCast3D
+@onready var player_camera: Camera3D = $PlayerHead/Camera
+@onready var ray_cast: RayCast3D = $PlayerHead/Camera/RayCast3D
 
 # UI parts
-@onready var game_pause_scene = $PlayerUI/Pause/GamePauseScene
-@onready var game_over_scene = $PlayerUI/GameEnd/GameOverScene
-@onready var game_won_scene = $PlayerUI/GameEnd/GameWonScene
-@onready var typewriter_dialog = $PlayerUI/GameUI/TypewriterDialogScene
-@onready var player_tooltip = $PlayerUI/GameUI/PlayerTooltip
+@onready var typewriter_dialog: Node2D = $PlayerUI/GameUI/TypewriterDialogScene
+@onready var player_tooltip: Node2D = $PlayerUI/GameUI/PlayerTooltip
 
-@export var is_fov_dynamic = true
+@onready var game_over_scene: Node2D = $PlayerUI/GameEnd/GameOverScene
+@onready var game_won_scene: Node2D = $PlayerUI/GameEnd/GameWonScene
+
+@export var is_fov_dynamic: bool = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var mouse_sensitivity = 0.75
+var mouse_sensitivity: float = 0.75
 
-var is_game_paused = false
-var is_game_over = false
-var is_game_won = false
+# Fov variables
+var base_fov: float = 90.0
+var increased_fov: float = 94.0
+var current_fov: float = base_fov
+var fov_change_speed: float = 5.0
 
-var base_fov = 90
-var increased_fov = 94
-var current_fov = base_fov
-var fov_change_speed = 5
+# Debug for console info
+var debug: bool = true
 
-var debug = false
+# Last collider player looked at
+var last_looked_at: String = ""
 
 
-func _ready():
+func _ready() -> void:
+	GlobalVar.reset_game()
 	player_camera.fov = current_fov
 	TransitionOverlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	is_game_paused = false
-	game_pause_scene.hide()
-	game_over_scene.hide()
-	game_won_scene.hide()
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	process_collisions()
-	# Update pause state if the user clicks on Continue
-	if is_game_paused:
-		listen_for_pause_button_change()
 
 
-func _input(event):
-	if !is_game_paused && !is_game_over && !is_game_won:
+func _input(event: InputEvent) -> void:
+	if GlobalVar.is_game_active:
 		if event is InputEventMouseMotion:
 			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
 			player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
+
+
+func _physics_process(delta: float) -> void:
+	# Not processing at all if the game isn't active
+	if not GlobalVar.is_game_active:
+		return
 	
-	if Input.is_action_just_pressed("game_pause"):
-		if !is_game_over && !is_game_won:
-			if is_game_paused:
-				is_game_paused = false
-				game_pause_scene.is_game_paused = is_game_paused
-			else:
-				is_game_paused = true
-				game_pause_scene.is_game_paused = is_game_paused
-		
-		update_pause_state()
-
-
-func _physics_process(delta):
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -78,101 +66,63 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
-		if Input.is_action_pressed("move_sprint"):
-			if !is_game_paused && !is_game_over && !is_game_won:
-				velocity.x = direction.x * SPEED * 2
-				velocity.z = direction.z * SPEED * 2
-				if is_fov_dynamic:
-					increase_fov(delta)
-			else:
-				velocity.x = direction.x * 0
-				velocity.z = direction.z * 0
-				if is_fov_dynamic:
-					decrease_fov(delta)
+	velocity.x = 0
+	velocity.z = 0
+	
+	var speed_multiplier: float = 1.0
+	if Input.is_action_pressed("move_sprint"): 
+		speed_multiplier = 2.0
+	
+	velocity.x = direction.x * SPEED * speed_multiplier
+	velocity.z = direction.z * SPEED * speed_multiplier
+	
+	if is_fov_dynamic:
+		if speed_multiplier > 1.0:
+			increase_fov(delta)
 		else:
-			if !is_game_paused && !is_game_over && !is_game_won:
-				velocity.x = direction.x * SPEED
-				velocity.z = direction.z * SPEED
-				if is_fov_dynamic:
-					decrease_fov(delta)
-			else:
-				velocity.x = direction.x * 0
-				velocity.z = direction.z * 0
-				if is_fov_dynamic:
-					decrease_fov(delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		if is_fov_dynamic:
 			decrease_fov(delta)
 	
 	move_and_slide()
 
 
-func process_collisions():
+func process_collisions() -> void:
 	if ray_cast.is_colliding():
-		var collision_object = ray_cast.get_collider().name
-		
-		if debug:
-			print("Player is looking at: " + collision_object + ".")
+		var collision_object: String = ray_cast.get_collider().name
+		if collision_object != last_looked_at:
+			last_looked_at = collision_object
+			if debug:
+				print("Player is looking at: " + collision_object + ".")
 	else:
-		if debug:
-			print("Player is looking at: nothing.")
+		if last_looked_at != "nothing":
+			last_looked_at = "nothing"
+			if debug:
+				print("Player is looking at: nothing.")
 
 
-func update_pause_state():
-	if is_game_paused:
-		game_pause_scene.show()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	else:
-		game_pause_scene.hide()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func trigger_game_over() -> void:
+	GlobalVar.toggle_game_over()
+	game_over_scene.show_game_over()
 
 
-func listen_for_pause_button_change():
-	if !(game_pause_scene.is_game_paused):
-		is_game_paused = game_pause_scene.is_game_paused
-		update_pause_state()
+func trigger_game_won() -> void:
+	GlobalVar.toggle_game_won()
+	game_won_scene.show_game_won()
 
 
-func toggle_game_over():
-	is_game_over = true
-	game_over_scene.show()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-
-func toggle_game_won():
-	is_game_won = true
-	game_won_scene.show()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-
-func increase_fov(delta):
+func increase_fov(delta: float) -> void:
 	current_fov = player_camera.fov
-	if current_fov < increased_fov:
-		current_fov += fov_change_speed * delta
-		
-		if current_fov > increased_fov:
-			current_fov = increased_fov
-		
-		change_fov(current_fov)
+	current_fov = min(current_fov + fov_change_speed * delta, increased_fov)
+	change_fov(current_fov)
 
 
-func decrease_fov(delta):
+func decrease_fov(delta: float) -> void:
 	current_fov = player_camera.fov
-	
-	if current_fov > base_fov:
-		current_fov -= fov_change_speed * delta * 8
-		
-		if current_fov < base_fov:
-			current_fov = base_fov
-		
-		change_fov(current_fov)
+	current_fov = max(current_fov - fov_change_speed * delta * 8, base_fov)
+	change_fov(current_fov)
 
 
-func change_fov(new_fov):
+func change_fov(new_fov: float) -> void:
 	player_camera.fov = new_fov

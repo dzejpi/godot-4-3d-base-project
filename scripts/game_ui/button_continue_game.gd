@@ -5,5 +5,5 @@ extends TextureButton
 
 
 func _on_pressed() -> void:
-	game_pause_scene.is_game_paused = false
+	game_pause_scene.unpause_game()
 	release_focus()
