@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if is_button_pressed and TransitionOverlay.transition_completed:
+	if is_button_pressed and TransitionOverlay.is_transition_completed:
 		release_focus()
 		get_tree().quit()
 
