@@ -20,6 +20,8 @@ const JUMP_VELOCITY: float = 4.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var mouse_sensitivity: float = 0.75
+# Mouse movement
+var mouse_delta: Vector2 = Vector2.ZERO
 
 # Fov variables
 var base_fov: float = 90.0
@@ -44,14 +46,16 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if GlobalVar.is_game_active:
 		if event is InputEventMouseMotion:
-			rotation_degrees.y -= event.relative.x * mouse_sensitivity / 10
-			player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - event.relative.y * mouse_sensitivity / 10, -90, 90)
+			mouse_delta = event.relative
 
 
 func _physics_process(delta: float) -> void:
 	# Not processing at all if the game isn't active
 	if not GlobalVar.is_game_active:
 		return
+	
+	# Camera movement
+	adjust_camera()
 	
 	# Gravity
 	if not is_on_floor():
@@ -83,6 +87,14 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	process_collisions()
+
+
+func adjust_camera() -> void:
+	rotation_degrees.y -= mouse_delta.x * mouse_sensitivity / 10
+	player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - mouse_delta.y * mouse_sensitivity / 10, -90, 90)
+	
+	# Reset mouse delta
+	mouse_delta = Vector2.ZERO
 
 
 func process_collisions() -> void:
