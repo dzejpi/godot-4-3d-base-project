@@ -14,6 +14,8 @@ const TURN_SPEED: float = 200.0
 @onready var game_won_scene: Node2D = $PlayerUI/GameEnd/GameWonScene
 
 var mouse_sensitivity: float = 0.75
+# Mouse movement
+var mouse_delta: Vector2 = Vector2.ZERO
 
 # Debug for console info
 var debug: bool = true
@@ -26,10 +28,6 @@ func _ready() -> void:
 	GlobalVar.reset_game()
 	TransitionOverlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
-func _process(_delta: float) -> void:
-	process_collisions()
 
 
 func _physics_process(delta: float) -> void:
@@ -57,6 +55,7 @@ func _physics_process(delta: float) -> void:
 	rotation_degrees.y = lerp_angle(rotation_degrees.y, yaw, 0.1)
 	
 	move_and_slide()
+	process_collisions()
 
 
 func process_collisions() -> void:
