@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbhvsihi4cwvx"]
+
+[ext_resource type="Script" path="res://scripts/npc/following_npc.gd" id="1_otbbd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rym48"]
+
+[node name="FollowingNpc" type="CharacterBody3D"]
+script = ExtResource("1_otbbd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.5, -0.866025, 0, 0.866025, -0.5, 0, 0.9, 0)
+radius = 0.25
+height = 0.5
+
+[node name="NpcCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_rym48")

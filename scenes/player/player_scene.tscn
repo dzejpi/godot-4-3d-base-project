@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
 
-[node name="PlayerScene" type="CharacterBody3D"]
+[node name="PlayerScene" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_63dc3")
 
 [node name="PlayerHead" type="Node3D" parent="."]
