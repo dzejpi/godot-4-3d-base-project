@@ -41,10 +41,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _process(_delta: float) -> void:
-	process_collisions()
-
-
 func _input(event: InputEvent) -> void:
 	if GlobalVar.is_game_active:
 		if event is InputEventMouseMotion:
@@ -86,6 +82,7 @@ func _physics_process(delta: float) -> void:
 			decrease_fov(delta)
 	
 	move_and_slide()
+	process_collisions()
 
 
 func process_collisions() -> void:
