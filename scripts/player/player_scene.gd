@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Camera movement
-	adjust_camera()
+	adjust_camera(delta)
 	
 	# Gravity
 	if not is_on_floor():
@@ -89,9 +89,9 @@ func _physics_process(delta: float) -> void:
 	process_collisions()
 
 
-func adjust_camera() -> void:
-	rotation_degrees.y -= mouse_delta.x * mouse_sensitivity / 10
-	player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - mouse_delta.y * mouse_sensitivity / 10, -90, 90)
+func adjust_camera(delta: float) -> void:
+	rotation_degrees.y -= (mouse_delta.x * mouse_sensitivity * delta * 60) / 10
+	player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - (mouse_delta.y * mouse_sensitivity * delta * 60) / 10, -90, 90)
 	
 	# Reset mouse delta
 	mouse_delta = Vector2.ZERO
