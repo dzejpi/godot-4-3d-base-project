@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://62w3n2fpdpaq"]
+[gd_scene format=3 uid="uid://62w3n2fpdpaq"]
 
 [ext_resource type="PackedScene" uid="uid://b8tc7q5tq6x8m" path="res://scenes/player/player_scene.tscn" id="1_1xwv1"]
 
@@ -18,21 +18,21 @@ background_mode = 2
 background_energy_multiplier = 1.5
 sky = SubResource("Sky_kwi0q")
 
-[node name="TestScene" type="Node3D"]
+[node name="TestScene" type="Node3D" unique_id=554415952]
 
-[node name="PlayerScene" parent="." instance=ExtResource("1_1xwv1")]
+[node name="PlayerScene" parent="." unique_id=829833994 instance=ExtResource("1_1xwv1")]
 
-[node name="WalkingObjects" type="Node3D" parent="."]
+[node name="WalkingObjects" type="Node3D" parent="." unique_id=984414610]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="WalkingObjects"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="WalkingObjects" unique_id=1875533323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_nl2vq")
 
-[node name="GroundStaticBody" type="StaticBody3D" parent="WalkingObjects"]
+[node name="GroundStaticBody" type="StaticBody3D" parent="WalkingObjects" unique_id=990777579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/GroundStaticBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkingObjects/GroundStaticBody" unique_id=2031998631]
 shape = SubResource("BoxShape3D_dcqyx")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2043227139]
 environment = SubResource("Environment_cq50u")
