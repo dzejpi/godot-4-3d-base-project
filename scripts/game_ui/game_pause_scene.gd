@@ -1,6 +1,9 @@
 extends Node2D
 
 
+@onready var continue_game_button: TextureButton = $PauseButtons/ContinueGameButton
+
+
 func _ready() -> void:
 	unpause_game()
 
@@ -15,6 +18,7 @@ func update_pause_state() -> void:
 	if GlobalVar.is_game_paused:
 		show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		continue_game_button.grab_focus()
 	else:
 		hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

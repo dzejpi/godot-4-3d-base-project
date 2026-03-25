@@ -12,3 +12,7 @@ func _process(_delta: float) -> void:
 func _on_pressed() -> void:
 	is_button_pressed = true
 	TransitionOverlay.fade_in()
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()
