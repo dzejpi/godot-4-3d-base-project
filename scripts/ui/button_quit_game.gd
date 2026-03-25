@@ -13,10 +13,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if is_button_pressed and TransitionOverlay.is_transition_completed:
-		release_focus()
 		get_tree().quit()
 
 
 func _on_pressed() -> void:
 	is_button_pressed = true
 	TransitionOverlay.fade_in()
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()

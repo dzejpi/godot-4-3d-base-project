@@ -1,28 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgrdefo35f2ri"]
+[gd_scene format=3 uid="uid://bgrdefo35f2ri"]
 
 [ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="1_kpkvn"]
-[ext_resource type="Script" path="res://scripts/ui/main_menu_scene.gd" id="1_mj8q0"]
+[ext_resource type="Script" uid="uid://de0b8yh704soc" path="res://scripts/ui/main_menu_scene.gd" id="1_mj8q0"]
 [ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="2_wuwa5"]
 [ext_resource type="Texture2D" uid="uid://d137crrs2egx8" path="res://assets/sprites/menu_buttons/menu_btn_hover.png" id="3_jn4kh"]
 [ext_resource type="Texture2D" uid="uid://bvjqteitujpy" path="res://assets/sprites/menu_buttons/menu_btn_disabled.png" id="4_4ygn1"]
 [ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_ig0wf"]
-[ext_resource type="Script" path="res://scripts/ui/button_quit_game.gd" id="6_gxbdg"]
-[ext_resource type="Script" path="res://scripts/ui/button_music.gd" id="6_q2mf7"]
-[ext_resource type="Script" path="res://scripts/ui/button_new_game.gd" id="6_t3iba"]
-[ext_resource type="Script" path="res://scripts/ui/button_sounds.gd" id="7_pmqqo"]
-[ext_resource type="Script" path="res://scripts/ui/button_credits.gd" id="8_8g4id"]
-[ext_resource type="Script" path="res://scripts/ui/button_back.gd" id="12_84rwi"]
+[ext_resource type="Script" uid="uid://uym5tx7yhve2" path="res://scripts/ui/button_quit_game.gd" id="6_gxbdg"]
+[ext_resource type="Script" uid="uid://byhw5fvkbh3qy" path="res://scripts/ui/button_music.gd" id="6_q2mf7"]
+[ext_resource type="Script" uid="uid://bi13lbj5j7450" path="res://scripts/ui/button_new_game.gd" id="6_t3iba"]
+[ext_resource type="Script" uid="uid://gqgyou2kc33q" path="res://scripts/ui/button_sounds.gd" id="7_pmqqo"]
+[ext_resource type="Script" uid="uid://dfv48yhehicjk" path="res://scripts/ui/button_credits.gd" id="8_8g4id"]
+[ext_resource type="Script" uid="uid://cshuwkeu1sjve" path="res://scripts/ui/button_back.gd" id="12_84rwi"]
 
-[node name="MainMenuScene" type="Node2D"]
+[node name="MainMenuScene" type="Node2D" unique_id=963244545]
 script = ExtResource("1_mj8q0")
 
-[node name="MainMenuSection" type="Node2D" parent="."]
+[node name="MainMenuSection" type="Node2D" parent="." unique_id=1629997612]
 
-[node name="MenuButtons" type="Node2D" parent="MainMenuSection"]
+[node name="MenuButtons" type="Node2D" parent="MainMenuSection" unique_id=2026822086]
 
-[node name="NewGameButton" type="TextureButton" parent="MainMenuSection/MenuButtons"]
+[node name="NewGameButton" type="TextureButton" parent="MainMenuSection/MenuButtons" unique_id=1708036996]
 offset_right = 40.0
 offset_bottom = 40.0
+focus_neighbor_bottom = NodePath("../MusicButton")
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
@@ -30,7 +31,7 @@ texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("6_t3iba")
 
-[node name="NewGameLabel" type="Label" parent="MainMenuSection/MenuButtons/NewGameButton"]
+[node name="NewGameLabel" type="Label" parent="MainMenuSection/MenuButtons/NewGameButton" unique_id=1975212546]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -38,10 +39,12 @@ text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicButton" type="TextureButton" parent="MainMenuSection/MenuButtons"]
+[node name="MusicButton" type="TextureButton" parent="MainMenuSection/MenuButtons" unique_id=946175738]
 offset_top = 96.0
 offset_right = 256.0
 offset_bottom = 160.0
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../SoundsButton")
 toggle_mode = true
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
@@ -50,7 +53,7 @@ texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("6_q2mf7")
 
-[node name="MusicLabel" type="Label" parent="MainMenuSection/MenuButtons/MusicButton"]
+[node name="MusicLabel" type="Label" parent="MainMenuSection/MenuButtons/MusicButton" unique_id=1278171472]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -58,10 +61,12 @@ text = "Music: on"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundsButton" type="TextureButton" parent="MainMenuSection/MenuButtons"]
+[node name="SoundsButton" type="TextureButton" parent="MainMenuSection/MenuButtons" unique_id=1450758592]
 offset_top = 192.0
 offset_right = 256.0
 offset_bottom = 256.0
+focus_neighbor_top = NodePath("../MusicButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
 toggle_mode = true
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
@@ -70,7 +75,7 @@ texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("7_pmqqo")
 
-[node name="SoundsLabel" type="Label" parent="MainMenuSection/MenuButtons/SoundsButton"]
+[node name="SoundsLabel" type="Label" parent="MainMenuSection/MenuButtons/SoundsButton" unique_id=2000360044]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -78,10 +83,12 @@ text = "Sounds: on"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsButton" type="TextureButton" parent="MainMenuSection/MenuButtons" node_paths=PackedStringArray("main_menu_scene")]
+[node name="CreditsButton" type="TextureButton" parent="MainMenuSection/MenuButtons" unique_id=970107685 node_paths=PackedStringArray("main_menu_scene")]
 offset_top = 288.0
 offset_right = 256.0
 offset_bottom = 352.0
+focus_neighbor_top = NodePath("../SoundsButton")
+focus_neighbor_bottom = NodePath("../QuitGameButton")
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
@@ -90,7 +97,7 @@ texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("8_8g4id")
 main_menu_scene = NodePath("../../..")
 
-[node name="CreditsLabel" type="Label" parent="MainMenuSection/MenuButtons/CreditsButton"]
+[node name="CreditsLabel" type="Label" parent="MainMenuSection/MenuButtons/CreditsButton" unique_id=619483796]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -98,10 +105,11 @@ text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuitGameButton" type="TextureButton" parent="MainMenuSection/MenuButtons"]
+[node name="QuitGameButton" type="TextureButton" parent="MainMenuSection/MenuButtons" unique_id=821364300]
 offset_top = 384.0
 offset_right = 256.0
 offset_bottom = 448.0
+focus_neighbor_top = NodePath("../CreditsButton")
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
@@ -109,7 +117,7 @@ texture_disabled = ExtResource("4_4ygn1")
 texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("6_gxbdg")
 
-[node name="QuitGameLabel" type="Label" parent="MainMenuSection/MenuButtons/QuitGameButton"]
+[node name="QuitGameLabel" type="Label" parent="MainMenuSection/MenuButtons/QuitGameButton" unique_id=1173774743]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -117,12 +125,12 @@ text = "Quit Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsSection" type="Node2D" parent="."]
+[node name="CreditsSection" type="Node2D" parent="." unique_id=1349441078]
 position = Vector2(1280, 0)
 
-[node name="CreditsText" type="Node2D" parent="CreditsSection"]
+[node name="CreditsText" type="Node2D" parent="CreditsSection" unique_id=1918282356]
 
-[node name="CreditsLabel" type="Label" parent="CreditsSection/CreditsText"]
+[node name="CreditsLabel" type="Label" parent="CreditsSection/CreditsText" unique_id=2115165564]
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 1216.0
@@ -131,10 +139,10 @@ text = "Credits text here."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" type="Node2D" parent="CreditsSection"]
+[node name="BackButton" type="Node2D" parent="CreditsSection" unique_id=1381648624]
 position = Vector2(512, 592)
 
-[node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton" node_paths=PackedStringArray("main_menu_scene")]
+[node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton" unique_id=1927677947 node_paths=PackedStringArray("main_menu_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
 texture_normal = ExtResource("1_kpkvn")
@@ -145,7 +153,7 @@ texture_focused = ExtResource("5_ig0wf")
 script = ExtResource("12_84rwi")
 main_menu_scene = NodePath("../../..")
 
-[node name="BackButtonLabel" type="Label" parent="CreditsSection/BackButton/BackButton"]
+[node name="BackButtonLabel" type="Label" parent="CreditsSection/BackButton/BackButton" unique_id=1396203627]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
@@ -153,9 +161,15 @@ text = "Back to menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="mouse_entered" from="MainMenuSection/MenuButtons/NewGameButton" to="MainMenuSection/MenuButtons/NewGameButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/NewGameButton" to="MainMenuSection/MenuButtons/NewGameButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="MainMenuSection/MenuButtons/MusicButton" to="MainMenuSection/MenuButtons/MusicButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/MusicButton" to="MainMenuSection/MenuButtons/MusicButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="MainMenuSection/MenuButtons/SoundsButton" to="MainMenuSection/MenuButtons/SoundsButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/SoundsButton" to="MainMenuSection/MenuButtons/SoundsButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="MainMenuSection/MenuButtons/CreditsButton" to="MainMenuSection/MenuButtons/CreditsButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/CreditsButton" to="MainMenuSection/MenuButtons/CreditsButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="MainMenuSection/MenuButtons/QuitGameButton" to="MainMenuSection/MenuButtons/QuitGameButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="MainMenuSection/MenuButtons/QuitGameButton" to="MainMenuSection/MenuButtons/QuitGameButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CreditsSection/BackButton/BackButton" to="CreditsSection/BackButton/BackButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="CreditsSection/BackButton/BackButton" to="CreditsSection/BackButton/BackButton" method="_on_pressed"]

@@ -15,6 +15,7 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	is_sound_on = not is_sound_on
 	update_sound_state()
+	grab_focus()
 
 
 func update_sound_state() -> void:
@@ -26,4 +27,7 @@ func update_sound_state() -> void:
 		sounds_label.text = "Sounds: off"
 	
 	button_pressed = is_sound_on
-	release_focus()
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()

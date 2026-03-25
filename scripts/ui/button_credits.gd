@@ -5,5 +5,8 @@ extends TextureButton
 
 
 func _on_pressed() -> void:
-	main_menu_scene.current_focus = "credits"
-	release_focus()
+	main_menu_scene.change_focus("credits")
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()

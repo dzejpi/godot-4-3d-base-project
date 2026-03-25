@@ -15,6 +15,7 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	is_music_on = not is_music_on
 	update_music_state()
+	grab_focus()
 
 
 func update_music_state() -> void:
@@ -25,4 +26,7 @@ func update_music_state() -> void:
 		music_label.text = "Music: off"
 	
 	button_pressed = is_music_on
-	release_focus()
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()
