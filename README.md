@@ -1,6 +1,6 @@
 # Godot 3D Base Project
 
-This is a base project for Godot 4.3 with simple 3D FPS controller which you can use as a starting project for your game jams. Of course, feel free to use it as a starting project for your feature complete game as well.
+This is a base project for Godot 4.6 with simple 3D FPS controller which you can use as a starting project for your game jams. Of course, feel free to use it as a starting project for your feature complete game as well.
 This project should be complying with the Ludum Dare *Compo* rules, which state: "You’re free to start with **any** base-code you may have." This is a project that can help you to start very rapidly, but only contains the necessary busywork so that you can focus and start working on the actual game very quickly.
 
 ## How to start
