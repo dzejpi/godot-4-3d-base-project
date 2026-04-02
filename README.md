@@ -13,7 +13,7 @@ config/name="Godot 4 3D Sample Project"
 
 And change it to the name of your project.
 
-Once you do that, just import the project into Godot 4.3. Eventually, you can import this project right away and rename it in the `Project` -> `Project settings` -> `Application` -> `Config`.
+Once you do that, just import the project into Godot 4.6. Eventually, you can import this project right away and rename it in the `Project` -> `Project settings` -> `Application` -> `Config`.
 
 ## Scene order
 
