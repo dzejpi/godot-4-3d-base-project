@@ -129,7 +129,7 @@ func trigger_game_over() -> void:
 
 
 func trigger_game_won() -> void:
-	GlobalVar.toggle_game_won()
+	GlobalVar.toggle_game_over()
 	game_won_scene.show_game_won()
 
 

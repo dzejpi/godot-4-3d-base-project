@@ -15,13 +15,14 @@ func _input(_event) -> void:
 
 
 func update_pause_state() -> void:
-	if GlobalVar.is_game_paused:
-		show()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		continue_game_button.grab_focus()
-	else:
-		hide()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if !GlobalVar.is_game_over:
+		if GlobalVar.is_game_paused:
+			show()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			continue_game_button.grab_focus()
+		else:
+			hide()
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func unpause_game() -> void:

@@ -11,5 +11,6 @@ func _ready() -> void:
 
 func show_game_won() -> void:
 	show()
+	GlobalVar.is_game_over = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	main_menu_button.grab_focus()
