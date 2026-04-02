@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds8q1y31xj1qm"]
+[gd_scene format=3 uid="uid://ds8q1y31xj1qm"]
 
-[ext_resource type="Script" path="res://scripts/global/global_var.gd" id="1_2byic"]
+[ext_resource type="Script" uid="uid://d3ryv12jkqw20" path="res://scripts/global/global_var.gd" id="1_2byic"]
 
-[node name="GlobalScene" type="Node"]
+[node name="GlobalScene" type="Node" unique_id=1544661772]
 script = ExtResource("1_2byic")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1675142946]
 bus = &"Music"
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="." unique_id=795967064]
 bus = &"Sound"

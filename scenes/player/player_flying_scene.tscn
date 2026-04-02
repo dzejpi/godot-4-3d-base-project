@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://faku31w7yhec"]
+[gd_scene format=3 uid="uid://faku31w7yhec"]
 
-[ext_resource type="Script" path="res://scripts/player/player_flying_scene.gd" id="1_bbaqt"]
+[ext_resource type="Script" uid="uid://mb4xsurltn8o" path="res://scripts/player/player_flying_scene.gd" id="1_bbaqt"]
 [ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/game_pause_scene.tscn" id="2_582gl"]
 [ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/game_over_scene.tscn" id="3_r5xil"]
 [ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/game_won_scene.tscn" id="4_eb51t"]
@@ -9,45 +9,45 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gfuc"]
 
-[node name="FlyingPlayerScene" type="CharacterBody3D"]
+[node name="FlyingPlayerScene" type="CharacterBody3D" unique_id=1006431682]
 script = ExtResource("1_bbaqt")
 
-[node name="PlayerHead" type="Node3D" parent="."]
+[node name="PlayerHead" type="Node3D" parent="." unique_id=1079755463]
 
-[node name="Camera" type="Camera3D" parent="PlayerHead"]
+[node name="Camera" type="Camera3D" parent="PlayerHead" unique_id=1380371868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera"]
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera" unique_id=1090436527]
 target_position = Vector3(0, 0, -3)
 
-[node name="Body" type="Node3D" parent="PlayerHead/Camera"]
+[node name="Body" type="Node3D" parent="PlayerHead/Camera" unique_id=5668174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.64966, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="PlayerHead/Camera/Body"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PlayerHead/Camera/Body" unique_id=1443361662]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
-[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="." unique_id=522471229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 shape = SubResource("BoxShape3D_1gfuc")
 
-[node name="PlayerUI" type="Node" parent="."]
+[node name="PlayerUI" type="Node" parent="." unique_id=2104389549]
 
-[node name="Pause" type="Node" parent="PlayerUI"]
+[node name="Pause" type="Node" parent="PlayerUI" unique_id=1966316068]
 
-[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_582gl")]
+[node name="GamePauseScene" parent="PlayerUI/Pause" unique_id=315988752 instance=ExtResource("2_582gl")]
 visible = false
 
-[node name="GameEnd" type="Node" parent="PlayerUI"]
+[node name="GameEnd" type="Node" parent="PlayerUI" unique_id=1562211387]
 
-[node name="GameOverScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_r5xil")]
+[node name="GameOverScene" parent="PlayerUI/GameEnd" unique_id=442778914 instance=ExtResource("3_r5xil")]
 visible = false
 
-[node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("4_eb51t")]
+[node name="GameWonScene" parent="PlayerUI/GameEnd" unique_id=1398168681 instance=ExtResource("4_eb51t")]
 visible = false
 
-[node name="GameUI" type="Node" parent="PlayerUI"]
+[node name="GameUI" type="Node" parent="PlayerUI" unique_id=442730948]
 
-[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("5_ipbx3")]
+[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" unique_id=37174831 instance=ExtResource("5_ipbx3")]
 
-[node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_5qa14")]
+[node name="PlayerTooltip" parent="PlayerUI/GameUI" unique_id=930402097 instance=ExtResource("6_5qa14")]
 position = Vector2(0, 392)

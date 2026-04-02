@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://uqsnfk54cjss"]
+[gd_scene format=3 uid="uid://uqsnfk54cjss"]
 
-[ext_resource type="Script" path="res://scripts/game_ui/player_tooltip.gd" id="1_tadtt"]
+[ext_resource type="Script" uid="uid://c2u1qs5smrjag" path="res://scripts/game_ui/player_tooltip.gd" id="1_tadtt"]
 
-[node name="PlayerTooltip" type="Node2D"]
+[node name="PlayerTooltip" type="Node2D" unique_id=386287142]
 script = ExtResource("1_tadtt")
 
-[node name="TooltipLabel" type="Label" parent="."]
+[node name="TooltipLabel" type="Label" parent="." unique_id=2089788743]
 offset_right = 1280.0
 offset_bottom = 48.0
 text = "Placeholder tooltip"

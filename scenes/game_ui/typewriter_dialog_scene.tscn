@@ -1,26 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0k77qlot24nc"]
+[gd_scene format=3 uid="uid://d0k77qlot24nc"]
 
 [ext_resource type="Texture2D" uid="uid://c34t687ys3xjh" path="res://assets/sprites/dialogue/dialogue_text_background.png" id="1_lece7"]
-[ext_resource type="Script" path="res://scripts/game_ui/typewriter_dialog_scene.gd" id="1_sml3d"]
+[ext_resource type="Script" uid="uid://b4jxkmog7c8vc" path="res://scripts/game_ui/typewriter_dialog_scene.gd" id="1_sml3d"]
 
-[node name="TypewriterDialogScene" type="Node2D"]
+[node name="TypewriterDialogScene" type="Node2D" unique_id=1875080481]
 script = ExtResource("1_sml3d")
 
-[node name="TextNode" type="Node2D" parent="."]
+[node name="TextNode" type="Node2D" parent="." unique_id=131133875]
 position = Vector2(64, 464)
 
-[node name="TextBackgroundSprite" type="Sprite2D" parent="TextNode"]
+[node name="TextBackgroundSprite" type="Sprite2D" parent="TextNode" unique_id=260854018]
 texture = ExtResource("1_lece7")
 centered = false
 
-[node name="TextLabel" type="Label" parent="TextNode/TextBackgroundSprite"]
+[node name="TextLabel" type="Label" parent="TextNode/TextBackgroundSprite" unique_id=625833887]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 1136.0
 offset_bottom = 176.0
 text = "Dialog text placeholder."
 
-[node name="TooltipLabel" type="Label" parent="TextNode/TextBackgroundSprite"]
+[node name="TooltipLabel" type="Label" parent="TextNode/TextBackgroundSprite" unique_id=2064774248]
 offset_left = 16.0
 offset_top = 153.0
 offset_right = 1136.0

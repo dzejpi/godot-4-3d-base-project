@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://5w17t4cy1s3a"]
+[gd_scene format=3 uid="uid://5w17t4cy1s3a"]
 
-[ext_resource type="Script" path="res://scripts/player/player_floating_scene.gd" id="1_bkq84"]
+[ext_resource type="Script" uid="uid://g6yuiev0uujm" path="res://scripts/player/player_floating_scene.gd" id="1_bkq84"]
 [ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/game_pause_scene.tscn" id="2_u7ylh"]
 [ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/game_over_scene.tscn" id="3_jljb4"]
 [ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/game_won_scene.tscn" id="4_23rr2"]
@@ -9,39 +9,39 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
 
-[node name="FloatingPlayerScene" type="CharacterBody3D"]
+[node name="FloatingPlayerScene" type="CharacterBody3D" unique_id=1417572644]
 script = ExtResource("1_bkq84")
 
-[node name="PlayerHead" type="Node3D" parent="."]
+[node name="PlayerHead" type="Node3D" parent="." unique_id=1917699445]
 
-[node name="Camera" type="Camera3D" parent="PlayerHead"]
+[node name="Camera" type="Camera3D" parent="PlayerHead" unique_id=1881903662]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera"]
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera" unique_id=1441423617]
 target_position = Vector3(0, 0, -3)
 
-[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="." unique_id=930517629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_votpe")
 
-[node name="PlayerUI" type="Node" parent="."]
+[node name="PlayerUI" type="Node" parent="." unique_id=121267429]
 
-[node name="Pause" type="Node" parent="PlayerUI"]
+[node name="Pause" type="Node" parent="PlayerUI" unique_id=1724820893]
 
-[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_u7ylh")]
+[node name="GamePauseScene" parent="PlayerUI/Pause" unique_id=750575952 instance=ExtResource("2_u7ylh")]
 visible = false
 
-[node name="GameEnd" type="Node" parent="PlayerUI"]
+[node name="GameEnd" type="Node" parent="PlayerUI" unique_id=1365077496]
 
-[node name="GameOverScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_jljb4")]
+[node name="GameOverScene" parent="PlayerUI/GameEnd" unique_id=1933371035 instance=ExtResource("3_jljb4")]
 visible = false
 
-[node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("4_23rr2")]
+[node name="GameWonScene" parent="PlayerUI/GameEnd" unique_id=101567891 instance=ExtResource("4_23rr2")]
 visible = false
 
-[node name="GameUI" type="Node" parent="PlayerUI"]
+[node name="GameUI" type="Node" parent="PlayerUI" unique_id=1884244264]
 
-[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("5_pf534")]
+[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" unique_id=421535527 instance=ExtResource("5_pf534")]
 
-[node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_utufl")]
+[node name="PlayerTooltip" parent="PlayerUI/GameUI" unique_id=1374696904 instance=ExtResource("6_utufl")]
 position = Vector2(0, 392)
