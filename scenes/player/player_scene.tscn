@@ -1,51 +1,47 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8tc7q5tq6x8m"]
+[gd_scene format=3 uid="uid://b8tc7q5tq6x8m"]
 
-[ext_resource type="Script" path="res://scripts/player/player_scene.gd" id="1_63dc3"]
+[ext_resource type="Script" uid="uid://d37rwjs741rov" path="res://scripts/player/player_scene.gd" id="1_63dc3"]
 [ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/game_over_scene.tscn" id="2_n2ncv"]
 [ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/game_pause_scene.tscn" id="2_s8mh6"]
 [ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/game_won_scene.tscn" id="3_ilfnc"]
 [ext_resource type="PackedScene" uid="uid://d0k77qlot24nc" path="res://scenes/game_ui/typewriter_dialog_scene.tscn" id="4_x0qso"]
-[ext_resource type="Script" path="res://scripts/game_ui/game_over_scene.gd" id="4_y1b12"]
 [ext_resource type="PackedScene" uid="uid://uqsnfk54cjss" path="res://scenes/game_ui/player_tooltip.tscn" id="6_km5q6"]
-[ext_resource type="Script" path="res://scripts/game_ui/game_won_scene.gd" id="6_thc6g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_votpe"]
 
-[node name="PlayerScene" type="CharacterBody3D" groups=["player"]]
+[node name="PlayerScene" type="CharacterBody3D" unique_id=1993538370 groups=["player"]]
 script = ExtResource("1_63dc3")
 
-[node name="PlayerHead" type="Node3D" parent="."]
+[node name="PlayerHead" type="Node3D" parent="." unique_id=2073686324]
 
-[node name="Camera" type="Camera3D" parent="PlayerHead"]
+[node name="Camera" type="Camera3D" parent="PlayerHead" unique_id=1123070767]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64966, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera"]
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/Camera" unique_id=1761616766]
 target_position = Vector3(0, 0, -3)
 
-[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="." unique_id=1982151978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_votpe")
 
-[node name="PlayerUI" type="Node" parent="."]
+[node name="PlayerUI" type="Node" parent="." unique_id=580521149]
 
-[node name="Pause" type="Node" parent="PlayerUI"]
+[node name="Pause" type="Node" parent="PlayerUI" unique_id=2035707102]
 
-[node name="GamePauseScene" parent="PlayerUI/Pause" instance=ExtResource("2_s8mh6")]
+[node name="GamePauseScene" parent="PlayerUI/Pause" unique_id=197370076 instance=ExtResource("2_s8mh6")]
 visible = false
 
-[node name="GameEnd" type="Node" parent="PlayerUI"]
+[node name="GameEnd" type="Node" parent="PlayerUI" unique_id=1704161444]
 
-[node name="GameOverScene" parent="PlayerUI/GameEnd" instance=ExtResource("2_n2ncv")]
+[node name="GameOverScene" parent="PlayerUI/GameEnd" unique_id=1565533313 instance=ExtResource("2_n2ncv")]
 visible = false
-script = ExtResource("4_y1b12")
 
-[node name="GameWonScene" parent="PlayerUI/GameEnd" instance=ExtResource("3_ilfnc")]
+[node name="GameWonScene" parent="PlayerUI/GameEnd" unique_id=1457277357 instance=ExtResource("3_ilfnc")]
 visible = false
-script = ExtResource("6_thc6g")
 
-[node name="GameUI" type="Node" parent="PlayerUI"]
+[node name="GameUI" type="Node" parent="PlayerUI" unique_id=1999540722]
 
-[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" instance=ExtResource("4_x0qso")]
+[node name="TypewriterDialogScene" parent="PlayerUI/GameUI" unique_id=1947569480 instance=ExtResource("4_x0qso")]
 
-[node name="PlayerTooltip" parent="PlayerUI/GameUI" instance=ExtResource("6_km5q6")]
+[node name="PlayerTooltip" parent="PlayerUI/GameUI" unique_id=1902202822 instance=ExtResource("6_km5q6")]
 position = Vector2(0, 392)

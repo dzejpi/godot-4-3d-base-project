@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn4i7tal0cmhg"]
+[gd_scene format=3 uid="uid://dn4i7tal0cmhg"]
 
-[ext_resource type="Script" path="res://scripts/game/game_scene.gd" id="1_5lbu1"]
+[ext_resource type="Script" uid="uid://8ovvrts8dwpl" path="res://scripts/game/game_scene.gd" id="1_5lbu1"]
 [ext_resource type="PackedScene" uid="uid://b8tc7q5tq6x8m" path="res://scenes/player/player_scene.tscn" id="2_3l0ia"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_psv6s"]
@@ -12,10 +12,10 @@ sky_material = SubResource("ProceduralSkyMaterial_psv6s")
 background_mode = 2
 sky = SubResource("Sky_v1kyu")
 
-[node name="GameScene" type="Node3D"]
+[node name="GameScene" type="Node3D" unique_id=750097938]
 script = ExtResource("1_5lbu1")
 
-[node name="PlayerScene" parent="." instance=ExtResource("2_3l0ia")]
+[node name="PlayerScene" parent="." unique_id=1842138678 instance=ExtResource("2_3l0ia")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=474206427]
 environment = SubResource("Environment_7nmuq")
