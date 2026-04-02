@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 		var target_x = focus_positions[current_focus]
 		if not is_equal_approx(position.x, target_x):
 			position.x = lerp(position.x, target_x, 5 * delta)
-			print("Current focus: " + current_focus)
 
 
 func change_focus(new_focus: String) -> void:
