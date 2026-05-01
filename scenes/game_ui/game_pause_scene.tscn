@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_my72x"]
 [ext_resource type="Script" uid="uid://cd13na0s0fngu" path="res://scenes/game_ui/button_continue_game.gd" id="6_hntig"]
 [ext_resource type="Script" uid="uid://c04chxywvtrck" path="res://scenes/game_ui/button_main_menu.gd" id="6_yyb44"]
+[ext_resource type="Theme" uid="uid://w1g7vj51sm0b" path="res://templates/button_template.tres" id="8_lh4nw"]
 [ext_resource type="Script" uid="uid://c5fb23q2aufie" path="res://scenes/ui/button_settings.gd" id="8_mpt78"]
 [ext_resource type="PackedScene" uid="uid://b4fwksyb45rul" path="res://scenes/ui/settings_scene.tscn" id="10_xglum"]
 
@@ -34,6 +35,7 @@ game_pause_scene = NodePath("../..")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_lh4nw")
 text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -56,6 +58,7 @@ parent_scene = NodePath("../..")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_lh4nw")
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -77,6 +80,7 @@ script = ExtResource("6_yyb44")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_lh4nw")
 text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1

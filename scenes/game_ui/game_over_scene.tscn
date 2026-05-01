@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_8ecms"]
 [ext_resource type="Script" uid="uid://bxan8tn0frq6x" path="res://scenes/game_ui/button_quit_game.gd" id="6_6v2ld"]
 [ext_resource type="Script" uid="uid://c04chxywvtrck" path="res://scenes/game_ui/button_main_menu.gd" id="7_wl5wd"]
+[ext_resource type="Theme" uid="uid://w1g7vj51sm0b" path="res://templates/button_template.tres" id="8_8w4t6"]
 
 [node name="GameOverScene" type="Node2D" unique_id=1565533313]
 script = ExtResource("1_tiilr")
@@ -38,6 +39,7 @@ script = ExtResource("7_wl5wd")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_8w4t6")
 text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -58,6 +60,7 @@ script = ExtResource("6_6v2ld")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_8w4t6")
 text = "Quit game"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bi13lbj5j7450" path="res://scenes/ui/button_new_game.gd" id="6_t3iba"]
 [ext_resource type="Script" uid="uid://c5fb23q2aufie" path="res://scenes/ui/button_settings.gd" id="8_3y6pr"]
 [ext_resource type="Script" uid="uid://dfv48yhehicjk" path="res://scenes/ui/button_credits.gd" id="8_8g4id"]
+[ext_resource type="Theme" uid="uid://w1g7vj51sm0b" path="res://templates/button_template.tres" id="8_irpsw"]
 [ext_resource type="PackedScene" uid="uid://b4fwksyb45rul" path="res://scenes/ui/settings_scene.tscn" id="11_d3jon"]
 [ext_resource type="Script" uid="uid://cshuwkeu1sjve" path="res://scenes/ui/button_back.gd" id="12_84rwi"]
 
@@ -37,6 +38,7 @@ script = ExtResource("6_t3iba")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -59,6 +61,7 @@ parent_scene = NodePath("../../..")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -81,6 +84,7 @@ main_menu_scene = NodePath("../../..")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -102,6 +106,7 @@ script = ExtResource("6_gxbdg")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 text = "Quit Game"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -130,6 +135,7 @@ position = Vector2(512, 592)
 [node name="BackButton" type="TextureButton" parent="CreditsSection/BackButton" unique_id=1927677947 node_paths=PackedStringArray("main_menu_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
@@ -142,6 +148,7 @@ main_menu_scene = NodePath("../../..")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
+theme = ExtResource("8_irpsw")
 text = "Back to menu"
 horizontal_alignment = 1
 vertical_alignment = 1
