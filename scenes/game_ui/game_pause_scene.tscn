@@ -8,18 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="5_my72x"]
 [ext_resource type="Script" uid="uid://cd13na0s0fngu" path="res://scenes/game_ui/button_continue_game.gd" id="6_hntig"]
 [ext_resource type="Script" uid="uid://c04chxywvtrck" path="res://scenes/game_ui/button_main_menu.gd" id="6_yyb44"]
-[ext_resource type="Script" uid="uid://byhw5fvkbh3qy" path="res://scenes/ui/button_music.gd" id="7_4n1ho"]
-[ext_resource type="Script" uid="uid://gqgyou2kc33q" path="res://scenes/ui/button_sounds.gd" id="8_mlp05"]
+[ext_resource type="Script" uid="uid://c5fb23q2aufie" path="res://scenes/ui/button_settings.gd" id="8_mpt78"]
+[ext_resource type="PackedScene" uid="uid://b4fwksyb45rul" path="res://scenes/ui/settings_scene.tscn" id="10_xglum"]
 
-[node name="GamePauseScene" type="Node2D" unique_id=1711271011]
+[node name="GamePauseScene" type="Node2D" unique_id=1711271011 node_paths=PackedStringArray("settings_section")]
 script = ExtResource("1_lp3de")
+settings_section = NodePath("SettingsSection")
 
 [node name="PauseButtons" type="Node2D" parent="." unique_id=133396823]
 
 [node name="ContinueGameButton" type="TextureButton" parent="PauseButtons" unique_id=1439782945 node_paths=PackedStringArray("game_pause_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
-focus_neighbor_bottom = NodePath("../MusicButton")
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 texture_normal = ExtResource("1_fati3")
 texture_pressed = ExtResource("2_o2o55")
 texture_hover = ExtResource("3_yrxtn")
@@ -36,55 +38,34 @@ text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicButton" type="TextureButton" parent="PauseButtons" unique_id=1986647430]
+[node name="SettingsButton" type="TextureButton" parent="PauseButtons" unique_id=576530770 node_paths=PackedStringArray("parent_scene")]
 offset_top = 96.0
 offset_right = 256.0
 offset_bottom = 160.0
 focus_neighbor_top = NodePath("../ContinueGameButton")
-focus_neighbor_bottom = NodePath("../SoundsButton")
-toggle_mode = true
-texture_normal = ExtResource("1_fati3")
-texture_pressed = ExtResource("2_o2o55")
-texture_hover = ExtResource("3_yrxtn")
-texture_disabled = ExtResource("4_w2s7p")
-texture_focused = ExtResource("5_my72x")
-script = ExtResource("7_4n1ho")
-
-[node name="MusicLabel" type="Label" parent="PauseButtons/MusicButton" unique_id=436394598]
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 64.0
-text = "Music: on"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundsButton" type="TextureButton" parent="PauseButtons" unique_id=2047112191]
-offset_top = 192.0
-offset_right = 256.0
-offset_bottom = 256.0
-focus_neighbor_top = NodePath("../MusicButton")
 focus_neighbor_bottom = NodePath("../MainMenuButton")
-toggle_mode = true
 texture_normal = ExtResource("1_fati3")
 texture_pressed = ExtResource("2_o2o55")
 texture_hover = ExtResource("3_yrxtn")
 texture_disabled = ExtResource("4_w2s7p")
 texture_focused = ExtResource("5_my72x")
-script = ExtResource("8_mlp05")
+script = ExtResource("8_mpt78")
+parent_scene = NodePath("../..")
 
-[node name="SoundsLabel" type="Label" parent="PauseButtons/SoundsButton" unique_id=806617626]
+[node name="SettingsLabel" type="Label" parent="PauseButtons/SettingsButton" unique_id=1381249191]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 64.0
-text = "Sounds: on"
+text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainMenuButton" type="TextureButton" parent="PauseButtons" unique_id=602905199]
-offset_top = 288.0
+offset_top = 192.0
 offset_right = 256.0
-offset_bottom = 352.0
-focus_neighbor_top = NodePath("../SoundsButton")
+offset_bottom = 256.0
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../ContinueGameButton")
 texture_normal = ExtResource("1_fati3")
 texture_pressed = ExtResource("2_o2o55")
 texture_hover = ExtResource("3_yrxtn")
@@ -100,11 +81,13 @@ text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SettingsSection" parent="." unique_id=949482021 node_paths=PackedStringArray("parent_scene") instance=ExtResource("10_xglum")]
+position = Vector2(-1280, 0)
+parent_scene = NodePath("..")
+
 [connection signal="mouse_entered" from="PauseButtons/ContinueGameButton" to="PauseButtons/ContinueGameButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseButtons/ContinueGameButton" to="PauseButtons/ContinueGameButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="PauseButtons/MusicButton" to="PauseButtons/MusicButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="PauseButtons/MusicButton" to="PauseButtons/MusicButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="PauseButtons/SoundsButton" to="PauseButtons/SoundsButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="PauseButtons/SoundsButton" to="PauseButtons/SoundsButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="PauseButtons/SettingsButton" to="PauseButtons/SettingsButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="PauseButtons/SettingsButton" to="PauseButtons/SettingsButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="PauseButtons/MainMenuButton" to="PauseButtons/MainMenuButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseButtons/MainMenuButton" to="PauseButtons/MainMenuButton" method="_on_pressed"]

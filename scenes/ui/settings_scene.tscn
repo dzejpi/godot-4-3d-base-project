@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://b4fwksyb45rul"]
+
+[ext_resource type="Script" uid="uid://baq7i2l8y44x" path="res://scenes/ui/settings_section.gd" id="1_fohb0"]
+[ext_resource type="Texture2D" uid="uid://dacbuha8ns5jn" path="res://assets/sprites/menu_buttons/menu_btn_normal.png" id="2_smxgj"]
+[ext_resource type="Texture2D" uid="uid://86c0wvxvogwi" path="res://assets/sprites/menu_buttons/menu_btn_pressed.png" id="3_p2udf"]
+[ext_resource type="Texture2D" uid="uid://d137crrs2egx8" path="res://assets/sprites/menu_buttons/menu_btn_hover.png" id="4_ryeki"]
+[ext_resource type="Texture2D" uid="uid://bvjqteitujpy" path="res://assets/sprites/menu_buttons/menu_btn_disabled.png" id="5_brior"]
+[ext_resource type="Texture2D" uid="uid://bdhyu3xv0bhb5" path="res://assets/sprites/menu_buttons/menu_btn_focused.png" id="6_vctj4"]
+[ext_resource type="Script" uid="uid://ded5umtsh017y" path="res://scenes/ui/button_settings_back.gd" id="7_xf2sv"]
+[ext_resource type="Script" uid="uid://cbr21yiq84q8f" path="res://scenes/ui/button_mouse_sensitivity.gd" id="8_70iit"]
+[ext_resource type="Script" uid="uid://byhw5fvkbh3qy" path="res://scenes/ui/button_music.gd" id="9_n46hj"]
+[ext_resource type="Script" uid="uid://gqgyou2kc33q" path="res://scenes/ui/button_sounds.gd" id="10_qx6cm"]
+[ext_resource type="Script" uid="uid://shl28xdvnlve" path="res://scenes/ui/button_full_screen.gd" id="11_57bi6"]
+[ext_resource type="Script" uid="uid://k606rpmxo1rr" path="res://scenes/ui/button_vsync.gd" id="12_h2ppu"]
+
+[node name="SettingsSection" type="Node2D" unique_id=949482021]
+script = ExtResource("1_fohb0")
+
+[node name="SettingsSwitcher" type="Node2D" parent="." unique_id=1226385710]
+
+[node name="GameSwitchButton" type="TextureButton" parent="SettingsSwitcher" unique_id=1900926074]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../SettingsBackButton/SettingsBackButton")
+focus_neighbor_right = NodePath("../AudioSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsContent/GameSettings/MouseSensitivityButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+
+[node name="GameSwitchButtonLabel" type="Label" parent="SettingsSwitcher/GameSwitchButton" unique_id=1217133789]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioSwitchButton" type="TextureButton" parent="SettingsSwitcher" unique_id=229703229]
+offset_left = 288.0
+offset_right = 544.0
+offset_bottom = 64.0
+focus_neighbor_left = NodePath("../GameSwitchButton")
+focus_neighbor_top = NodePath("../../SettingsBackButton/SettingsBackButton")
+focus_neighbor_right = NodePath("../GraphicsSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsContent/AudioSettings/MusicButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+
+[node name="AudioSwitchButtonLabel" type="Label" parent="SettingsSwitcher/AudioSwitchButton" unique_id=1404572188]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsSwitchButton" type="TextureButton" parent="SettingsSwitcher" unique_id=411439875]
+offset_left = 576.0
+offset_right = 832.0
+offset_bottom = 64.0
+focus_neighbor_left = NodePath("../AudioSwitchButton")
+focus_neighbor_top = NodePath("../../SettingsBackButton/SettingsBackButton")
+focus_neighbor_right = NodePath("../ControlsSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsContent/GraphicsSettings/FullScreenButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+
+[node name="GraphicsSwitchButtonLabel" type="Label" parent="SettingsSwitcher/GraphicsSwitchButton" unique_id=1303300516]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Graphics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsSwitchButton" type="TextureButton" parent="SettingsSwitcher" unique_id=286769881]
+offset_left = 864.0
+offset_right = 1120.0
+offset_bottom = 64.0
+focus_neighbor_left = NodePath("../GraphicsSwitchButton")
+focus_neighbor_top = NodePath("../../SettingsBackButton/SettingsBackButton")
+disabled = true
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+
+[node name="ControlsSwitchButtonLabel" type="Label" parent="SettingsSwitcher/ControlsSwitchButton" unique_id=641609332]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsBackButton" type="Node2D" parent="." unique_id=1667276845]
+position = Vector2(512, 592)
+
+[node name="SettingsBackButton" type="TextureButton" parent="SettingsBackButton" unique_id=842842726 node_paths=PackedStringArray("settings_scene")]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../SettingsSwitcher/GameSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsSwitcher/GameSwitchButton")
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("7_xf2sv")
+settings_scene = NodePath("../..")
+
+[node name="SettingsBackButtonLabel" type="Label" parent="SettingsBackButton/SettingsBackButton" unique_id=1135671082]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Back to menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsContent" type="Node2D" parent="." unique_id=1179261366]
+position = Vector2(0, 96)
+
+[node name="GameSettings" type="Node2D" parent="SettingsContent" unique_id=703089449]
+
+[node name="MouseSensitivityButton" type="TextureButton" parent="SettingsContent/GameSettings" unique_id=149947867]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../../SettingsSwitcher/GameSwitchButton")
+focus_neighbor_bottom = NodePath("../../../SettingsBackButton/SettingsBackButton")
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("8_70iit")
+
+[node name="MouseSensitivityLabel" type="Label" parent="SettingsContent/GameSettings/MouseSensitivityButton" unique_id=1787453819]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Mouse sensitivity: 1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioSettings" type="Node2D" parent="SettingsContent" unique_id=1796294484]
+visible = false
+
+[node name="MusicButton" type="TextureButton" parent="SettingsContent/AudioSettings" unique_id=1498306690]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../../SettingsSwitcher/AudioSwitchButton")
+focus_neighbor_bottom = NodePath("../SoundsButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("9_n46hj")
+
+[node name="MusicLabel" type="Label" parent="SettingsContent/AudioSettings/MusicButton" unique_id=412205477]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Music: on"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundsButton" type="TextureButton" parent="SettingsContent/AudioSettings" unique_id=599396440]
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+focus_neighbor_top = NodePath("../MusicButton")
+focus_neighbor_bottom = NodePath("../../../SettingsBackButton/SettingsBackButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("10_qx6cm")
+
+[node name="SoundsLabel" type="Label" parent="SettingsContent/AudioSettings/SoundsButton" unique_id=1824760131]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Sounds: on"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsSettings" type="Node2D" parent="SettingsContent" unique_id=1160525432]
+visible = false
+
+[node name="FullScreenButton" type="TextureButton" parent="SettingsContent/GraphicsSettings" unique_id=1339947766]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../../SettingsSwitcher/GameSwitchButton")
+focus_neighbor_bottom = NodePath("../VsyncButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("11_57bi6")
+
+[node name="FullScreenLabel" type="Label" parent="SettingsContent/GraphicsSettings/FullScreenButton" unique_id=1149624207]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Full screen: off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VsyncButton" type="TextureButton" parent="SettingsContent/GraphicsSettings" unique_id=2067854521]
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+focus_neighbor_top = NodePath("../FullScreenButton")
+focus_neighbor_bottom = NodePath("../../../SettingsBackButton/SettingsBackButton")
+toggle_mode = true
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("12_h2ppu")
+
+[node name="VsyncLabel" type="Label" parent="SettingsContent/GraphicsSettings/VsyncButton" unique_id=448080937]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "VSync: off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsSettings" type="Node2D" parent="SettingsContent" unique_id=2107052031]
+
+[connection signal="mouse_entered" from="SettingsSwitcher/GameSwitchButton" to="." method="_on_game_switch_button_mouse_entered"]
+[connection signal="pressed" from="SettingsSwitcher/GameSwitchButton" to="." method="_on_game_switch_button_pressed"]
+[connection signal="mouse_entered" from="SettingsSwitcher/AudioSwitchButton" to="." method="_on_audio_switch_button_mouse_entered"]
+[connection signal="pressed" from="SettingsSwitcher/AudioSwitchButton" to="." method="_on_audio_switch_button_pressed"]
+[connection signal="mouse_entered" from="SettingsSwitcher/GraphicsSwitchButton" to="." method="_on_graphics_switch_button_mouse_entered"]
+[connection signal="pressed" from="SettingsSwitcher/GraphicsSwitchButton" to="." method="_on_graphics_switch_button_pressed"]
+[connection signal="mouse_entered" from="SettingsSwitcher/ControlsSwitchButton" to="." method="_on_controls_switch_button_mouse_entered"]
+[connection signal="pressed" from="SettingsSwitcher/ControlsSwitchButton" to="." method="_on_controls_switch_button_pressed"]
+[connection signal="mouse_entered" from="SettingsBackButton/SettingsBackButton" to="SettingsBackButton/SettingsBackButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsBackButton/SettingsBackButton" to="SettingsBackButton/SettingsBackButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsContent/GameSettings/MouseSensitivityButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsContent/GameSettings/MouseSensitivityButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/AudioSettings/MusicButton" to="SettingsContent/AudioSettings/MusicButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/AudioSettings/MusicButton" to="SettingsContent/AudioSettings/MusicButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/AudioSettings/SoundsButton" to="SettingsContent/AudioSettings/SoundsButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/AudioSettings/SoundsButton" to="SettingsContent/AudioSettings/SoundsButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/GraphicsSettings/FullScreenButton" to="SettingsContent/GraphicsSettings/FullScreenButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/GraphicsSettings/FullScreenButton" to="SettingsContent/GraphicsSettings/FullScreenButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/GraphicsSettings/VsyncButton" to="SettingsContent/GraphicsSettings/VsyncButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/GraphicsSettings/VsyncButton" to="SettingsContent/GraphicsSettings/VsyncButton" method="_on_pressed"]

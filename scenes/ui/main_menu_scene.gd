@@ -6,7 +6,7 @@ var current_focus: String = "main_menu"
 @onready var settings_button: TextureButton = $MainMenuSection/MenuButtons/SettingsButton
 @onready var credits_button: TextureButton = $MainMenuSection/MenuButtons/CreditsButton
 @onready var back_button: TextureButton = $CreditsSection/BackButton/BackButton
-@onready var settings_section: Node2D = $SettingsSection
+@export var settings_section: Node
 
 var focus_positions: Dictionary = {
 	"main_menu": 0.0,
@@ -42,3 +42,7 @@ func change_focus(new_focus: String) -> void:
 			settings_section.resolve_proper_focus()
 		"credits":
 			back_button.grab_focus()
+
+
+func go_back_from_settings() -> void:
+	change_focus("main_menu")

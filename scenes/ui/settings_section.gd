@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var currently_selected: String = "audio"
+@export var parent_scene: Node
 
 # Buttons
 @onready var game_switch_button: TextureButton = $SettingsSwitcher/GameSwitchButton
@@ -63,6 +64,10 @@ func resolve_proper_focus() -> void:
 			graphics_switch_button.grab_focus()
 		"controls":
 			controls_switch_button.grab_focus()
+
+
+func dismiss_settings() -> void:
+	parent_scene.go_back_from_settings()
 
 
 func _on_game_switch_button_pressed() -> void:

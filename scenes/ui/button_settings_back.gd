@@ -1,11 +1,11 @@
 extends TextureButton
 
 
-@export var parent_scene: Node
+@export var settings_scene: Node
 
 
 func _on_pressed() -> void:
-	parent_scene.change_focus("settings")
+	settings_scene.dismiss_settings()
 
 
 func _on_mouse_entered() -> void:
