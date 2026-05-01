@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uqsnfk54cjss"]
 
-[ext_resource type="Script" uid="uid://c2u1qs5smrjag" path="res://scripts/game_ui/player_tooltip.gd" id="1_tadtt"]
+[ext_resource type="Script" uid="uid://c2u1qs5smrjag" path="res://scenes/game_ui/player_tooltip.gd" id="1_tadtt"]
 
 [node name="PlayerTooltip" type="Node2D" unique_id=386287142]
 script = ExtResource("1_tadtt")

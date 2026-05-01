@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbhvsihi4cwvx"]
 
-[ext_resource type="Script" uid="uid://dh4htrbdrolj6" path="res://scripts/npc/following_npc.gd" id="1_otbbd"]
+[ext_resource type="Script" uid="uid://dh4htrbdrolj6" path="res://scenes/npc/following_npc.gd" id="1_otbbd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rym48"]
 

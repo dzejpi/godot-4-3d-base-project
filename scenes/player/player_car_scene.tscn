@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c7c7nkle31np"]
 
-[ext_resource type="Script" uid="uid://bridxygmvc8nr" path="res://scripts/player/player_car_scene.gd" id="1_34pww"]
+[ext_resource type="Script" uid="uid://bridxygmvc8nr" path="res://scenes/player/player_car_scene.gd" id="1_34pww"]
 [ext_resource type="PackedScene" uid="uid://8rjjgn7r2g22" path="res://scenes/game_ui/game_pause_scene.tscn" id="2_05n05"]
 [ext_resource type="PackedScene" uid="uid://lidxun3v1u3h" path="res://scenes/game_ui/game_over_scene.tscn" id="3_3tre3"]
 [ext_resource type="PackedScene" uid="uid://cpoy7p032mikq" path="res://scenes/game_ui/game_won_scene.tscn" id="4_psva1"]
