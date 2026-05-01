@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c34t687ys3xjh" path="res://assets/sprites/dialogue/dialogue_text_background.png" id="1_lece7"]
 [ext_resource type="Script" uid="uid://b4jxkmog7c8vc" path="res://scenes/game_ui/typewriter_dialog_scene.gd" id="1_sml3d"]
+[ext_resource type="Theme" uid="uid://dmslljggkvob0" path="res://templates/base_text_template.tres" id="3_ldsom"]
 
 [node name="TypewriterDialogScene" type="Node2D" unique_id=1875080481]
 script = ExtResource("1_sml3d")
@@ -18,6 +19,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 1136.0
 offset_bottom = 176.0
+theme = ExtResource("3_ldsom")
 text = "Dialog text placeholder."
 
 [node name="TooltipLabel" type="Label" parent="TextNode/TextBackgroundSprite" unique_id=2064774248]
@@ -25,5 +27,6 @@ offset_left = 16.0
 offset_top = 153.0
 offset_right = 1136.0
 offset_bottom = 176.0
+theme = ExtResource("3_ldsom")
 text = "Press E to dismiss"
 horizontal_alignment = 1

@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://w1g7vj51sm0b" path="res://templates/button_template.tres" id="8_irpsw"]
 [ext_resource type="PackedScene" uid="uid://b4fwksyb45rul" path="res://scenes/ui/settings_scene.tscn" id="11_d3jon"]
 [ext_resource type="Script" uid="uid://cshuwkeu1sjve" path="res://scenes/ui/button_back.gd" id="12_84rwi"]
+[ext_resource type="Theme" uid="uid://dmslljggkvob0" path="res://templates/base_text_template.tres" id="13_3y6pr"]
 
 [node name="MainMenuScene" type="Node2D" unique_id=963244545 node_paths=PackedStringArray("settings_section")]
 script = ExtResource("1_mj8q0")
@@ -125,6 +126,7 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 1216.0
 offset_bottom = 528.0
+theme = ExtResource("13_3y6pr")
 text = "Credits text here."
 horizontal_alignment = 1
 vertical_alignment = 1
