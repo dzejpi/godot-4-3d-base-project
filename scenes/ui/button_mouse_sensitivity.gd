@@ -26,4 +26,4 @@ func _on_mouse_entered() -> void:
 
 
 func update_sensitivity_label() -> void:
-	mouse_sensitivity_label.text = "Mouse sensitivity: " + str(GlobalVar.mouse_sensitivity)
+	mouse_sensitivity_label.text = "Mouse sensitivity: " + str(int(GlobalVar.mouse_sensitivity * 100)) + " %"
