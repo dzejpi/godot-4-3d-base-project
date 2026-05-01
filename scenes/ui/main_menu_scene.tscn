@@ -167,6 +167,7 @@ offset_bottom = 64.0
 focus_neighbor_left = NodePath("../AudioSwitchButton")
 focus_neighbor_top = NodePath("../../BackButton/BackButton")
 focus_neighbor_right = NodePath("../ControlsSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsContent/GraphicsSettings/FullScreenButton")
 toggle_mode = true
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
@@ -210,6 +211,8 @@ position = Vector2(512, 592)
 [node name="BackButton" type="TextureButton" parent="SettingsSection/BackButton" unique_id=1224039908 node_paths=PackedStringArray("main_menu_scene")]
 offset_right = 256.0
 offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../SettingsSwitcher/GameSwitchButton")
+focus_neighbor_bottom = NodePath("../../SettingsSwitcher/GameSwitchButton")
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
 texture_hover = ExtResource("3_jn4kh")
