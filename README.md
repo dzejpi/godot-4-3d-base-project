@@ -17,9 +17,9 @@ Once you do that, just import the project into Godot 4.6. Eventually, you can im
 
 ## Scene order
 
-Project starts with a Splash scene (`ui/SplashScene.tscn`), which displays two logos — one of them is usually used as your logo, second is usually used as a logo of the game jam you are participating in or as a logo of your game. 
+Project starts with a Splash scene (`ui/splash_scene.tscn`), which displays two logos — one of them is usually used as your logo, second is usually used as a logo of the game jam you are participating in or as a logo of your game. 
 
-Once both logos are displayed, the Splash scene automatically loads the Main menu scene (`MainMenuScene.tscn`). You can start a new game, which starts the `GameSceneOne.tscn` scene. Main menu also offers the player a possibility to switch between On/Off modes for sounds and music, display Credits (which focuses the camera to the `CreditsSection`) or quit the game. *Quit game* button contains an extra check that disables it in case your game is running in HTML5, because quitting a HTML5 game would just unload it from the embed.
+Once both logos are displayed, the Splash scene automatically loads the Main menu scene (`main_menu_scene.tscn`). You can start a new game, which starts the `game_scene.tscn` scene. Main menu also offers the player a possibility to display settings (which focuses the camera to the `SettingsSection`), display Credits (which focuses the camera to the `CreditsSection`) or quit the game. *Quit game* button contains an extra check that disables it in case your game is running in HTML5, because quitting a HTML5 game would just unload it from the embed.
 
 ## Player controller
 
@@ -31,20 +31,20 @@ Project contains a very basic FPS controller. The player can:
 * sprint with `Shift`
 * pause with `Escape`
 
-Key bindings contain some settings for gamepads as well, but this would have to be tested, so do not count on those being 100 % correct (at least yet). 
+Key bindings contain settings for gamepads as well.
 
 Player scene also contains a RayCast which can output the current object that the player is looking at into the console. If you want to see it, just change the `debug` variable to `true` and you will get a stream of messages indicating what the player is currently looking at.
 
 Player scene contains three additional screens, which are important to know about:
 
-* `GamePauseScene` — if the player presses `Escape`, the Pause scene is displayed. Player can either continue, turn the music/sounds off (or on) or go back to the main menu.
-* `GameWonScene` — if the player wins, use the `toggle_game_won()` function, which displays this scene. Once displayed, the player is unable to move.
-* `GameOverScene` — if the player loses, use the `toggle_game_over()` function which displays this scene. Just like with previous one, once it's displayed, the player is unable to move.
-* `TypewriterDialog` — used to display dialogs with `typewriter_dialog.start_dialog([dialog_array], delta)` (described below)
+* `GamePauseScene` — if the player presses `Escape`, the Pause scene is displayed. Player can either continue, change settings or go back to the main menu.
+* `GameWonScene` — if the player wins, use the `toggle_game_won()` function, which displays this scene. Once displayed, the game is freezed and the player is unable to move.
+* `GameOverScene` — if the player loses, use the `toggle_game_over()` function which displays this scene. Just like with previous one, once it's displayed, the game freezes and the player is unable to move.
+* `TypewriterDialogScene` — used to display dialogs with `typewriter_dialog.start_dialog([dialog_array], delta)` (described below)
 
 ### Floating player controller
 
-FPS controller might not be suitable for all projects. This is the reason this project also contains `FloatingPlayerScene.tscn`, which is very similar to the `PlayerScene.tscn`, but with a slight difference in the physics and behavior. Physics here simulate moving freely with little (or no) gravity. This can be used for games where the player is swimming underwater the whole time, but it is also applicable as submarine controller or even spaceship controller.
+FPS controller might not be suitable for all projects. This is the reason this project also contains `player_floating_scene.tscn`, which is very similar to the `player_scene.tscn`, but with a slight difference in the physics and behavior. Physics here simulate moving freely with little (or no) gravity. This can be used for games where the player is swimming underwater the whole time, but it is also applicable as submarine controller or even spaceship controller.
 
 The differentiating factor here is the `is_pulled_down` variable: 
 	
@@ -55,16 +55,15 @@ Player can move upwards by holding `Space` and go downwards by holding `Ctrl`. O
 
 ## Global scene
 
-There are two global scenes in the project. First is the `GlobalScene.tscn`. This scene is autoloaded as a general global scene right at the beginning, and contains `SfxPlayer`, which is set to play sounds and `MusicPlayer`, which is set to play music.
+There are two global scenes in the project. First is the `global_scene.tscn`. This scene is autoloaded as a general global scene right at the beginning, and contains `SfxPlayer`, which is set to play sounds and `MusicPlayer`, which is set to play music.
 
 Sounds can be played by `play_sound(sfx_name)` and stopped by `stop_sound(sfx_name)`. 
 
 Music can be played by `play_music()` and stopped by `stop_music()`. 
 
-
 ## Transition overlay
 
-Second global scene is `TransitionOverlay.tscn`. This scene takes care of "fade in" and "fade out" effects. Use this for smooth transitions between screens. You can simply call:
+Second global scene is `transition_overlay_scene.tscn`. This scene takes care of "fade in" and "fade out" effects. Use this for smooth transitions between screens. You can simply call:
 
 ```
 transition_overlay.fade_in()
@@ -80,7 +79,7 @@ from any code anywhere in order for the fade in or fade out effect to appear. If
 
 ## Typewriter dialog
 
-PlayerScene contains a `TypewriterDialogNode`, which is assigned through the `typewriter_dialog` variable. In order to trigger a dialog, use this function anywhere in the Player code: 
+PlayerScene contains a `TypewriterDialogScene`, which is assigned through the `typewriter_dialog` variable. In order to trigger a dialog, use this function anywhere in the Player code: 
 
 ```
 typewriter_dialog.start_dialog(["First message.", "Second message."], delta)
@@ -105,10 +104,6 @@ player_tooltip.set_tooltip_action("move_jump")
 
 You can also dismiss the tooltip with `player_tooltip.dismiss_tooltip()` any time.
 
-## Scripts
-
-Scripts are separated from scenes in the `scripts` folder. Apart from `buttons` folder, they generally follow the same structure as their scene counterparts, so, there is not much to describe here.
-
 ## Assets
 
 This project contains `assets` folder with the following structure:
@@ -120,8 +115,8 @@ This project contains `assets` folder with the following structure:
 * **sprites** — this is a folder for your sprites
   * **dialogue** — this folder contains placeholder for dialog text background
   * **menu_buttons** — this folder contains placeholders for all menu buttons
-  * **splash_logos** — this folder placeholders for `logo-jam.png` and `logo-main.png` which are displayed in the `SplashScene.tscn` when the game is launched.
-  * **transition** — this folder contains black 1 x 1 px sprite used by the `TransitionOverlay.tscn`. Transition overlay simply scales the sprite to fit the window resolution
+  * **splash_logos** — this folder placeholders for `logo-jam.png` and `logo-main.png` which are displayed in the `splash_scene.tscn` when the game is launched.
+  * **transition** — this folder contains black 1 x 1 px sprite used by the `transition_overlay_scene.tscn`. Transition overlay simply scales the sprite to fit the window resolution
 
 ## Export to HTML5
 
