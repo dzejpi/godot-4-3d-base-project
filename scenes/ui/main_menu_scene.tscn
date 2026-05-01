@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://baq7i2l8y44x" path="res://scenes/ui/settings_section.gd" id="10_irpsw"]
 [ext_resource type="Script" uid="uid://cshuwkeu1sjve" path="res://scenes/ui/button_back.gd" id="12_84rwi"]
 [ext_resource type="Script" uid="uid://shl28xdvnlve" path="res://scenes/ui/button_full_screen.gd" id="13_18epe"]
+[ext_resource type="Script" uid="uid://cbr21yiq84q8f" path="res://scenes/ui/button_mouse_sensitivity.gd" id="13_uihoq"]
 [ext_resource type="Script" uid="uid://k606rpmxo1rr" path="res://scenes/ui/button_vsync.gd" id="16_f4b2v"]
 
 [node name="MainMenuScene" type="Node2D" unique_id=963244545]
@@ -120,7 +121,7 @@ offset_right = 256.0
 offset_bottom = 64.0
 focus_neighbor_top = NodePath("../../BackButton/BackButton")
 focus_neighbor_right = NodePath("../AudioSwitchButton")
-focus_neighbor_bottom = NodePath("../../SettingsContent/GraphicsSettings/FullScreenButton")
+focus_neighbor_bottom = NodePath("../../SettingsContent/GameSettings/MouseSensitivityButton")
 toggle_mode = true
 texture_normal = ExtResource("1_kpkvn")
 texture_pressed = ExtResource("2_wuwa5")
@@ -230,6 +231,26 @@ position = Vector2(0, 96)
 
 [node name="GameSettings" type="Node2D" parent="SettingsSection/SettingsContent" unique_id=209430374]
 
+[node name="MouseSensitivityButton" type="TextureButton" parent="SettingsSection/SettingsContent/GameSettings" unique_id=1210421620]
+offset_right = 256.0
+offset_bottom = 64.0
+focus_neighbor_top = NodePath("../../../SettingsSwitcher/GameSwitchButton")
+focus_neighbor_bottom = NodePath("../../../BackButton/BackButton")
+texture_normal = ExtResource("1_kpkvn")
+texture_pressed = ExtResource("2_wuwa5")
+texture_hover = ExtResource("3_jn4kh")
+texture_disabled = ExtResource("4_4ygn1")
+texture_focused = ExtResource("5_ig0wf")
+script = ExtResource("13_uihoq")
+
+[node name="MouseSensitivityLabel" type="Label" parent="SettingsSection/SettingsContent/GameSettings/MouseSensitivityButton" unique_id=632519423]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Mouse sensitivity: 1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AudioSettings" type="Node2D" parent="SettingsSection/SettingsContent" unique_id=137444040]
 visible = false
 
@@ -277,6 +298,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GraphicsSettings" type="Node2D" parent="SettingsSection/SettingsContent" unique_id=2005749585]
+visible = false
 
 [node name="FullScreenButton" type="TextureButton" parent="SettingsSection/SettingsContent/GraphicsSettings" unique_id=1906426761]
 offset_right = 256.0
@@ -377,6 +399,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="SettingsSection/SettingsSwitcher/ControlsSwitchButton" to="SettingsSection" method="_on_controls_switch_button_pressed"]
 [connection signal="mouse_entered" from="SettingsSection/BackButton/BackButton" to="SettingsSection/BackButton/BackButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsSection/BackButton/BackButton" to="SettingsSection/BackButton/BackButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsSection/SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsSection/SettingsContent/GameSettings/MouseSensitivityButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsSection/SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsSection/SettingsContent/GameSettings/MouseSensitivityButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsSection/SettingsContent/AudioSettings/MusicButton" to="SettingsSection/SettingsContent/AudioSettings/MusicButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsSection/SettingsContent/AudioSettings/MusicButton" to="SettingsSection/SettingsContent/AudioSettings/MusicButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsSection/SettingsContent/AudioSettings/SoundsButton" to="SettingsSection/SettingsContent/AudioSettings/SoundsButton" method="_on_mouse_entered"]

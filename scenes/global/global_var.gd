@@ -18,6 +18,7 @@ var is_game_over: bool = false
 
 # General game active state 
 var is_game_active: bool = true
+var mouse_sensitivity: float = 1.0
 
 
 func play_music() -> void:

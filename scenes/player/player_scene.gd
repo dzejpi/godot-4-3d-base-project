@@ -19,7 +19,6 @@ const JUMP_VELOCITY: float = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var mouse_sensitivity: float = 0.75
 @export var controller_sensitivity: float = 16.0
 
 # Mouse movement
@@ -98,11 +97,11 @@ func adjust_camera(delta: float) -> void:
 	var controller_look := Vector2(look_x, look_y) * controller_sensitivity
 	
 	# Mouse movement
-	rotation_degrees.y -= (mouse_delta.x * mouse_sensitivity * delta * 60) / 10
+	rotation_degrees.y -= (mouse_delta.x * GlobalVar.mouse_sensitivity * delta * 60) / 10
 	
 	var look := mouse_delta + controller_look
-	rotation_degrees.y -= (look.x * mouse_sensitivity * delta * 60) / 10
-	player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - (look.y * mouse_sensitivity * delta * 60) / 10, -90, 90)
+	rotation_degrees.y -= (look.x * GlobalVar.mouse_sensitivity * delta * 60) / 10
+	player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x - (look.y * GlobalVar.mouse_sensitivity * delta * 60) / 10, -90, 90)
 	
 	# Reset mouse delta
 	mouse_delta = Vector2.ZERO
