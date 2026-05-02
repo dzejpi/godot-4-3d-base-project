@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ded5umtsh017y" path="res://scenes/ui/button_settings_back.gd" id="7_xf2sv"]
 [ext_resource type="Script" uid="uid://cbr21yiq84q8f" path="res://scenes/ui/button_mouse_sensitivity.gd" id="8_70iit"]
 [ext_resource type="Script" uid="uid://byhw5fvkbh3qy" path="res://scenes/ui/button_music.gd" id="9_n46hj"]
+[ext_resource type="Script" uid="uid://cjbc4bf1w7t17" path="res://scenes/ui/button_fov.gd" id="10_p2udf"]
 [ext_resource type="Script" uid="uid://gqgyou2kc33q" path="res://scenes/ui/button_sounds.gd" id="10_qx6cm"]
 [ext_resource type="Script" uid="uid://shl28xdvnlve" path="res://scenes/ui/button_full_screen.gd" id="11_57bi6"]
 [ext_resource type="Script" uid="uid://k606rpmxo1rr" path="res://scenes/ui/button_vsync.gd" id="12_h2ppu"]
@@ -146,7 +147,7 @@ position = Vector2(0, 96)
 offset_right = 256.0
 offset_bottom = 64.0
 focus_neighbor_top = NodePath("../../../SettingsSwitcher/GameSwitchButton")
-focus_neighbor_bottom = NodePath("../../../SettingsBackButton/SettingsBackButton")
+focus_neighbor_bottom = NodePath("../FovButton")
 texture_normal = ExtResource("2_smxgj")
 texture_pressed = ExtResource("3_p2udf")
 texture_hover = ExtResource("4_ryeki")
@@ -160,6 +161,28 @@ offset_right = 256.0
 offset_bottom = 64.0
 theme = ExtResource("7_smxgj")
 text = "Mouse sensitivity: 1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FovButton" type="TextureButton" parent="SettingsContent/GameSettings" unique_id=861776267]
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+focus_neighbor_top = NodePath("../MouseSensitivityButton")
+focus_neighbor_bottom = NodePath("../../../SettingsBackButton/SettingsBackButton")
+texture_normal = ExtResource("2_smxgj")
+texture_pressed = ExtResource("3_p2udf")
+texture_hover = ExtResource("4_ryeki")
+texture_disabled = ExtResource("5_brior")
+texture_focused = ExtResource("6_vctj4")
+script = ExtResource("10_p2udf")
+
+[node name="FovLabel" type="Label" parent="SettingsContent/GameSettings/FovButton" unique_id=237505938]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme = ExtResource("7_smxgj")
+text = "FOV: 90"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -273,6 +296,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="SettingsBackButton/SettingsBackButton" to="SettingsBackButton/SettingsBackButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsContent/GameSettings/MouseSensitivityButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsContent/GameSettings/MouseSensitivityButton" to="SettingsContent/GameSettings/MouseSensitivityButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsContent/GameSettings/FovButton" to="SettingsContent/GameSettings/FovButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsContent/GameSettings/FovButton" to="SettingsContent/GameSettings/FovButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsContent/AudioSettings/MusicButton" to="SettingsContent/AudioSettings/MusicButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsContent/AudioSettings/MusicButton" to="SettingsContent/AudioSettings/MusicButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsContent/AudioSettings/SoundsButton" to="SettingsContent/AudioSettings/SoundsButton" method="_on_mouse_entered"]
