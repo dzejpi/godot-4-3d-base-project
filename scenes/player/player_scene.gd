@@ -25,9 +25,8 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var mouse_delta: Vector2 = Vector2.ZERO
 
 # Fov variables
-var base_fov: float = 90.0
-var increased_fov: float = 94.0
-var current_fov: float = base_fov
+var base_fov: float = GlobalVar.player_fov
+var fov_increase: float = 4.0
 var fov_change_speed: float = 5.0
 
 # Debug for console info
@@ -39,7 +38,7 @@ var last_looked_at: String = ""
 
 func _ready() -> void:
 	GlobalVar.reset_game()
-	player_camera.fov = current_fov
+	player_camera.fov = base_fov
 	TransitionOverlay.fade_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -90,6 +89,12 @@ func _physics_process(delta: float) -> void:
 	process_collisions()
 
 
+func _process(delta: float) -> void:
+	if base_fov != GlobalVar.player_fov:
+		base_fov = GlobalVar.player_fov
+		player_camera.fov = base_fov
+
+
 func adjust_camera(delta: float) -> void:
 	# Controller input
 	var look_x := Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
@@ -133,13 +138,13 @@ func trigger_game_won() -> void:
 
 
 func increase_fov(delta: float) -> void:
-	current_fov = player_camera.fov
-	current_fov = min(current_fov + fov_change_speed * delta, increased_fov)
+	var current_fov = player_camera.fov
+	current_fov = min(current_fov + fov_change_speed * delta, current_fov + fov_increase)
 	change_fov(current_fov)
 
 
 func decrease_fov(delta: float) -> void:
-	current_fov = player_camera.fov
+	var current_fov = player_camera.fov
 	current_fov = max(current_fov - fov_change_speed * delta * 8, base_fov)
 	change_fov(current_fov)
 
